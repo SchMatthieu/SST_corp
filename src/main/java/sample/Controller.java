@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class Controller {
 
@@ -41,11 +44,28 @@ public class Controller {
     @FXML
     Button updateButton;
 
+    List<Item> listOfItem = new LinkedList<>();
+
+
+    private Item fetchItem(String name)
+    {
+        Item item = null;
+        for(int i = 0; i < listOfItem.size();i++)
+        {
+            if(listOfItem.get(i).getName() == name)
+            {
+                item = listOfItem.get(i);
+                break;
+            }
+        }
+        return item;
+    }
+
     private void displaDetail(String name)
     {
         try
         {
-            Item item = new Item();
+            Item item = fetchItem(name);
             quality.setText(item.getName());
             nameField.setText(item.getName());
             sellinField.setText(String.valueOf(item.getSellIn()));
