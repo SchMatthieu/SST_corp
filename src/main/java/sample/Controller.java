@@ -1,5 +1,6 @@
 package sample;
 
+import edu.insightr.gildedrose.Item;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
@@ -29,7 +30,7 @@ public class Controller {
     TextField sellinField;
 
     @FXML
-    TextField identityLab;
+    TextField quality;
 
     @FXML
     TextField nameField;
@@ -40,6 +41,21 @@ public class Controller {
     @FXML
     Button updateButton;
 
+    private void displaDetail(String name)
+    {
+        try
+        {
+            Item item;
+            quality.setText(item.getName());
+            nameField.setText(item.getName());
+            sellinField.setText(item.getSellIn());
+            typeField.setText(item.getClass());
 
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
