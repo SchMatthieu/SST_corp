@@ -7,6 +7,13 @@ public class Item {
 
     private int quality;
 
+    public Item() {
+        super();
+        this.name = "Object";
+        this.sellIn = 25;
+        this.quality = 17;
+    }
+
     public Item(String name, int sellIn, int quality) {
         super();
         this.name = name;

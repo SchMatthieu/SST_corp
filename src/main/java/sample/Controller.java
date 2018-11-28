@@ -45,11 +45,11 @@ public class Controller {
     {
         try
         {
-            Item item;
+            Item item = new Item();
             quality.setText(item.getName());
             nameField.setText(item.getName());
-            sellinField.setText(item.getSellIn());
-            typeField.setText(item.getClass());
+            sellinField.setText(String.valueOf(item.getSellIn()));
+            typeField.setText(String.valueOf(item.getClass()));
 
         }
         catch (Exception e)
