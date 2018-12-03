@@ -1,5 +1,6 @@
 package sample;
 
+import edu.insightr.gildedrose.Inventory;
 import edu.insightr.gildedrose.Item;
 import javafx.fxml.FXML;
 
@@ -44,17 +45,23 @@ public class Controller {
     @FXML
     Button updateButton;
 
-    List<Item> listOfItem = new LinkedList<>();
+    Item[] listOfItem;
+
+
+    private void createList()
+    {
+        listOfItem = new Inventory().getItems();
+    }
 
 
     private Item fetchItem(String name)
     {
         Item item = null;
-        for(int i = 0; i < listOfItem.size();i++)
+        for(int i = 0; i < listOfItem.length;i++)
         {
-            if(listOfItem.get(i).getName() == name)
+            if(listOfItem[i].getName().compareTo(name) == 0)
             {
-                item = listOfItem.get(i);
+                item = listOfItem[i];
                 break;
             }
         }
