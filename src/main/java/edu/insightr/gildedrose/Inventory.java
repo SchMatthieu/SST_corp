@@ -38,7 +38,7 @@ public class Inventory {
     }
 
     public void updateQuality() {
-      /*  for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < items.length; i++) {
             if (items[i].getName() != "Aged Brie"
                     && items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
                 if (items[i].getQuality() > 0) {
@@ -87,7 +87,7 @@ public class Inventory {
                     }
                 }
             }
-        }*/
+        }
     }
 
     public void updateSellin()
