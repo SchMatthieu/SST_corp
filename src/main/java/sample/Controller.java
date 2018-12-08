@@ -1,6 +1,5 @@
 package sample;
 
-import edu.insightr.gildedrose.Inventory;
 import edu.insightr.gildedrose.Item;
 import javafx.fxml.FXML;
 
@@ -43,25 +42,19 @@ public class Controller {
     TextField typeField;
 
     @FXML
-    Button updateButton;
+    Button updatebutton;
 
-    Item[] listOfItem;
-
-
-    private void createList()
-    {
-        listOfItem = new Inventory().getItems();
-    }
+    List<Item> listOfItem = new LinkedList<>();
 
 
     private Item fetchItem(String name)
     {
         Item item = null;
-        for(int i = 0; i < listOfItem.length;i++)
+        for(int i = 0; i < listOfItem.size();i++)
         {
-            if(listOfItem[i].getName().compareTo(name) == 0)
+            if(listOfItem.get(i).getName().compareTo(name) == 0)
             {
-                item = listOfItem[i];
+                item = listOfItem.get(i);
                 break;
             }
         }
@@ -73,7 +66,7 @@ public class Controller {
         try
         {
             Item item = fetchItem(name);
-            quality.setText(item.getName());
+            quality.setText(String.valueOf(item.getQuality()));
             nameField.setText(item.getName());
             sellinField.setText(String.valueOf(item.getSellIn()));
             typeField.setText(String.valueOf(item.getClass()));

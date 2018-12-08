@@ -9,6 +9,13 @@ public class Backstage_passes_to_a_TAFKAL80ETC_concert extends Item{
         this.sellIn=17;
     }
 
+    public Backstage_passes_to_a_TAFKAL80ETC_concert(String name)
+    {
+        this.name = name;
+        this.quality=12;
+        this.sellIn=17;
+    }
+
     public Backstage_passes_to_a_TAFKAL80ETC_concert(String name, int sellIn, int quality)
     {
         super();

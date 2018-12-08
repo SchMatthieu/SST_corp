@@ -9,6 +9,13 @@ public class Elixir_of_the_Mongoose extends Item {
         this.sellIn=10;
     }
 
+    public Elixir_of_the_Mongoose(String name)
+    {
+        this.name = name;
+        this.quality=12;
+        this.sellIn=17;
+    }
+
     public Elixir_of_the_Mongoose(String name, int sellIn, int quality)
     {
         super();

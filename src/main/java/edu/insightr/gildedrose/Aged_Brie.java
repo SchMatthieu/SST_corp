@@ -9,6 +9,13 @@ public class Aged_Brie extends Item {
         this.sellIn=10;
     }
 
+    public Aged_Brie(String name)
+    {
+        this.name = name;
+        this.quality=12;
+        this.sellIn=17;
+    }
+
     public Aged_Brie(String name, int sellIn, int quality)
     {
         super();

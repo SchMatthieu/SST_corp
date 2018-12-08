@@ -9,6 +9,13 @@ public class Sulfuras_Hand_of_Ragnaros extends Item{
         this.sellIn=15;
     }
 
+    public Sulfuras_Hand_of_Ragnaros(String name)
+    {
+        this.name = name;
+        this.quality=12;
+        this.sellIn=17;
+    }
+
     public Sulfuras_Hand_of_Ragnaros(String name, int sellIn, int quality)
     {
         super();

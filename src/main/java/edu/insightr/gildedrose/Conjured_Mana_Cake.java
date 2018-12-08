@@ -10,6 +10,13 @@ public class Conjured_Mana_Cake extends Item{
         this.sellIn=19;
     }
 
+    public Conjured_Mana_Cake(String name)
+    {
+        this.name = name;
+        this.quality=12;
+        this.sellIn=17;
+    }
+
     public Conjured_Mana_Cake(String name, int sellIn, int quality)
     {
         super();
