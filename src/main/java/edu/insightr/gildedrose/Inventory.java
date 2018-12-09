@@ -1,7 +1,5 @@
 package edu.insightr.gildedrose;
 
-import javax.xml.ws.BindingType;
-
 public class Inventory {
 
     private Item[] items;

@@ -53,4 +53,5 @@ public abstract class Item {
                 ", quality=" + quality +
                 '}';
     }
+
 }
