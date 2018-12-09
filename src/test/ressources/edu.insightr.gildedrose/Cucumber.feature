@@ -32,12 +32,12 @@ Feature: Conjured Item
     When I update the inventory
     Then the quality of the item is 50
 
-  Scenario: Sulfuras, Hand of Ragnaros item update
+ Sulfuras, Hand of Ragnaros item update
     Given I have a new inventory
     Then the quality of the Sulfuras, Hand of Ragnaros item is 150
     And the sellIn of the Sulfuras, Hand of Ragnaros item is 1000
     When I update the inventory
-    Then the quality of the  Aged Brie item is 150
+    Then the quality of the Sulfuras, Hand of Ragnaros item is 150
     And the sellIn of the Sulfuras, Hand of Ragnaros item is 1000
 
   Scenario: Quality never more than 50 update
