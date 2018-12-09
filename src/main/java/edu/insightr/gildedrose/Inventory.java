@@ -1,5 +1,7 @@
 package edu.insightr.gildedrose;
 
+
+
 public class Inventory {
 
     private Item[] items;
@@ -21,7 +23,8 @@ public class Inventory {
                 new Conjured_Mana_Cake(),
                 new Dexterity_Vest(),
                 new Elixir_of_the_Mongoose(),
-                new Sulfuras_Hand_of_Ragnaros()
+                new Sulfuras_Hand_of_Ragnaros(),
+                new Dexterity_Vest("+5 Dexterity Vest", 14, 50)
         };
 
     }
@@ -36,54 +39,39 @@ public class Inventory {
     }
 
     public void updateQuality() {
-      /*  for (int i = 0; i < items.length; i++) {
-            if (items[i].getName() != "Aged Brie"
-                    && items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
-                if (items[i].getQuality() > 0) {
-                    if (items[i].getName() != "Sulfuras, Hand of Ragnaros") {
-                        items[i].setQuality(items[i].getQuality() - 1);
-                    }
-                }
-            } else {
-                if (items[i].getQuality() < 50) {
-                    items[i].setQuality(items[i].getQuality() + 1);
+ /*
+        this.updateSellin();
 
-                    if (items[i].getName() == "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].getSellIn() < 11) {
-                            if (items[i].getQuality() < 50) {
-                                items[i].setQuality(items[i].getQuality() + 1);
-                            }
-                        }
+        for(int i = 0; i < items.length; i++) {
 
-                        if (items[i].getSellIn() < 6) {
-                            if (items[i].getQuality() < 50) {
-                                items[i].setQuality(items[i].getQuality() + 1);
-                            }
-                        }
-                    }
-                }
-            }
+            String[] type = String.valueOf(items[i].getClass()).split("\\.");
+            switch (type[type.length-1]) {
+                case "Dexterity_Vest":
+                    (Dexterity_Vest)items[i].updateQuality();
+                    break;
 
-            if (items[i].getName() != "Sulfuras, Hand of Ragnaros") {
-                items[i].setSellIn(items[i].getSellIn() - 1);
-            }
+                case "Aged_Brie":
+                    (Aged_Brie)items[i].updateQuality();
+                    break;
 
-            if (items[i].getSellIn() < 0) {
-                if (items[i].getName() != "Aged Brie") {
-                    if (items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].getQuality() > 0) {
-                            if (items[i].getName() != "Sulfuras, Hand of Ragnaros") {
-                                items[i].setQuality(items[i].getQuality() - 1);
-                            }
-                        }
-                    } else {
-                        items[i].setQuality(items[i].getQuality() - items[i].getQuality());
-                    }
-                } else {
-                    if (items[i].getQuality() < 50) {
-                        items[i].setQuality(items[i].getQuality() + 1);
-                    }
-                }
+                case "Elixir_of_the_Mongoose":
+                    (Elixir_of_the_Mongoose)items[i].updateQuality();
+                    break;
+
+                case "Sulfuras_Hand_of_Ragnaros":
+                    (Sulfuras_Hand_of_Ragnaros)items[i].updateQuality();
+                    break;
+
+                case "Backstage_passes_to_a_TAFKAL80ETC_concert":
+                    (Backstage_passes_to_a_TAFKAL80ETC_concert)items[i].updateQuality();
+                    break;
+
+                case "Conjured_Mana_Cake":
+                    (Conjured_Mana_Cake)items[i].updateQuality();
+                    break;
+
+                default:
+                    break;
             }
         }*/
     }
@@ -95,7 +83,6 @@ public class Inventory {
             items[i].setSellIn(items[i].getSellIn() - 1);
         }
     }
-
 
 
     public static void main(String[] args) {

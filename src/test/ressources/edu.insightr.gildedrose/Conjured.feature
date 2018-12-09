@@ -15,22 +15,22 @@ Feature: Conjured Item
 
   Scenario: date passed update
     Given I have a new inventory
-    Then the quality of the Dexterity item is 10
+    Then the quality of item is 10
     And the sellIn is 0
     When I update the inventory
-    Then the quality of the  Aged Brie item is 8
+    Then the quality of the item is 8
 
   Scenario: Quality never negative update
     Given I have a new inventory
-    Then the quality of the Aged Brie item is 0
+    Then the quality of the item is 0
     When I update the inventory
-    Then the quality of the  Aged Brie item is 0
+    Then the quality of the item is 0
 
   Scenario: Never more than 50 update
     Given I have a new inventory
-    Then the quality of the Aged Brie item is 50
+    Then the quality of the  item is 50
     When I update the inventory
-    Then the quality of the  Aged Brie item is 50
+    Then the quality of the item is 50
 
   Scenario: Sulfuras, Hand of Ragnaros item update
     Given I have a new inventory
@@ -42,25 +42,25 @@ Feature: Conjured Item
 
   Scenario: Quality never more than 50 update
     Given I have a new inventory
-    Then the quality of the Aged Brie item is 50
+    Then the quality of the item is 50
     When I update the inventory
     Then the quality of the  Aged Brie item is 50
 
   Scenario: Backstage passes to a TAFKAL80ETC concert item update
     Given I have a new inventory
-    Then the quality of the Aged Brie item is 12
-    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert is 9
+    Then the quality of the Backstage passes to a TAFKAL80ETC concert item is 12
+    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 9
     When I update the inventory
     Then the quality of the  Aged Brie item is 14
-    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert is 8
+    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 8
 
   Scenario: Backstage passes to a TAFKAL80ETC concert item update
     Given I have a new inventory
-    Then the quality of the Aged Brie item is 14
-    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert is 4
+    Then the quality of the Backstage passes to a TAFKAL80ETC concert item is 14
+    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 4
     When I update the inventory
     Then the quality of the  Aged Brie item is 17
-    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert is 3
+    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 3
 
 
 

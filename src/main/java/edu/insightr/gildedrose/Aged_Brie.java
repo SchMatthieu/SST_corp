@@ -24,9 +24,5 @@ public class Aged_Brie extends Item {
         this.quality = quality;
     }
 
-   /* public void accept(IVisitor visitor)
-    {
-        visitor.visit(this);
-    }*/
 
 }

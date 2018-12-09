@@ -24,9 +24,5 @@ public class Backstage_passes_to_a_TAFKAL80ETC_concert extends Item{
         this.quality = quality;
     }
 
-    /*public void accept(IVisitor visitor)
-    {
-        visitor.visit(this);
-    }*/
 
 }

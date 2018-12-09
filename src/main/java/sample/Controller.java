@@ -41,9 +41,6 @@ public class Controller {
     @FXML
     TextField typeField;
 
-    @FXML
-    Button updatebutton;
-
     List<Item> listOfItem = new LinkedList<>();
 
 
@@ -69,7 +66,8 @@ public class Controller {
             quality.setText(String.valueOf(item.getQuality()));
             nameField.setText(item.getName());
             sellinField.setText(String.valueOf(item.getSellIn()));
-            typeField.setText(String.valueOf(item.getClass()));
+            String[] tmp = String.valueOf(item.getClass()).split("\\.");
+            typeField.setText(tmp[tmp.length-1]);
 
         }
         catch (Exception e)
