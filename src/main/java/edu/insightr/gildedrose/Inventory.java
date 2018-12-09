@@ -1,7 +1,6 @@
 package edu.insightr.gildedrose;
-
-import javax.xml.ws.BindingType;
-
+import java.util.ArrayList;
+import java.util.List;
 public class Inventory {
 
     private Item[] items;
@@ -36,58 +35,12 @@ public class Inventory {
         System.out.println("***************");
         System.out.println("\n");
     }
-
-    public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getName() != "Aged Brie"
-                    && items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
-                if (items[i].getQuality() > 0) {
-                    if (items[i].getName() != "Sulfuras, Hand of Ragnaros") {
-                        items[i].setQuality(items[i].getQuality() - 1);
-                    }
-                }
-            } else {
-                if (items[i].getQuality() < 50) {
-                    items[i].setQuality(items[i].getQuality() + 1);
-
-                    if (items[i].getName() == "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].getSellIn() < 11) {
-                            if (items[i].getQuality() < 50) {
-                                items[i].setQuality(items[i].getQuality() + 1);
-                            }
-                        }
-
-                        if (items[i].getSellIn() < 6) {
-                            if (items[i].getQuality() < 50) {
-                                items[i].setQuality(items[i].getQuality() + 1);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (items[i].getName() != "Sulfuras, Hand of Ragnaros") {
-                items[i].setSellIn(items[i].getSellIn() - 1);
-            }
-
-            if (items[i].getSellIn() < 0) {
-                if (items[i].getName() != "Aged Brie") {
-                    if (items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].getQuality() > 0) {
-                            if (items[i].getName() != "Sulfuras, Hand of Ragnaros") {
-                                items[i].setQuality(items[i].getQuality() - 1);
-                            }
-                        }
-                    } else {
-                        items[i].setQuality(items[i].getQuality() - items[i].getQuality());
-                    }
-                } else {
-                    if (items[i].getQuality() < 50) {
-                        items[i].setQuality(items[i].getQuality() + 1);
-                    }
-                }
-            }
+    public List<String> toList(){
+        List<String> list_tmp = new ArrayList<>();
+        for (Item item : items){
+            list_tmp.add(item.getName());
         }
+        return  list_tmp;
     }
 
     public void updateSellin()
@@ -98,13 +51,12 @@ public class Inventory {
         }
     }
 
-
-
-    public static void main(String[] args) {
-        Inventory inventory = new Inventory();
-        for (int i = 0; i < 10; i++) {
-            inventory.updateQuality();
-            inventory.printInventory();
+    public void updateQuality() {
+        for (Item item : items){
+            item.updateQuality();
         }
     }
-}
+
+
+    }
+

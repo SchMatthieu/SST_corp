@@ -46,4 +46,8 @@ public class Item {
                 ", quality=" + quality +
                 '}';
     }
+    public void updateQuality()
+    {
+        this.sellIn--;
+    }
 }

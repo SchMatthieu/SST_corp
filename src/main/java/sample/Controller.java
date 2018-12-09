@@ -1,131 +1,84 @@
 package sample;
 
+import edu.insightr.gildedrose.Inventory;
 import edu.insightr.gildedrose.Item;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.util.LinkedList;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class Controller {
-
-    @FXML
-    Label listLab;
+public class Controller implements Initializable {
 
     @FXML
-    Label sellinLab;
-
+    TextField textfield_name;
     @FXML
-    Label qualityLab;
-
+    TextField textfield_sellin;
     @FXML
-    Label nameLab;
-
-    @FXML
-    Label typeLab;
-
-    @FXML
-    Item[] listItem;
-
-    @FXML
-    TextField sellinField;
-
-    @FXML
-    TextField quality;
-
-    @FXML
-    TextField nameField;
-
+    TextField textfield_quality;
     @FXML
     TextField typeField;
-
-    @SuppressWarnings("deprecation")
     @FXML
-    Button updateButton = new Button("Update");
+    ListView<String> list_items;
 
-    List<Item> listOfItem = new LinkedList<>();
+    public Inventory inventory;
 
-    private Item fetchItem(String name) {
+    public void initialize(URL location, ResourceBundle resources) {
+        fetchItems();
+        list_items.getSelectionModel().selectedItemProperty().addListener(e->
+                displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
+    }
+    private Item fetchItemByName(String name)
+    {
         Item item = null;
-        for (int i = 0; i < listOfItem.size(); i++) {
-            if (listOfItem.get(i).getName() == name) {
-                item = listOfItem.get(i);
+        for(int i = 0; i < this.inventory.getItems().length;i++)
+        {
+            if(this.inventory.getItems()[i].getName().compareTo(name) == 0)
+            {
+                item = this.inventory.getItems()[i];
                 break;
             }
         }
         return item;
     }
+    public void fetchItems(){
+        this.inventory = new Inventory();
 
-    private void displaDetail(String name) {
-        try {
-            Item item = fetchItem(name);
-            quality.setText(item.getName());
-            nameField.setText(item.getName());
-            sellinField.setText(String.valueOf(item.getSellIn()));
+        ObservableList<String> listItems;
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < inventory.getItems().length;i++)
+        {
+            list.add(inventory.getItems()[i].getName());
+        }
+        listItems = FXCollections.observableArrayList(list);
+        list_items.setItems(listItems);
+    }
+    private void displayItemsDetails(Object o)
+    {
+        try
+        {
+            String name = (String) o;
+            Item item = fetchItemByName(name);
+            textfield_quality.setText(String.valueOf(item.getQuality()));
+            textfield_name.setText(item.getName());
+            textfield_sellin.setText(String.valueOf(item.getSellIn()));
             typeField.setText(String.valueOf(item.getClass()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             System.out.println(e.getMessage());
         }
     }
-    public void update() throws Exception{
 
-        @SuppressWarnings("deprecation")
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-
-            public void handle(ActionEvent e) {
-                Item[] items = listItem;
-
-                for (int i = 0; i < items.length; i++) {
-                    String nom = items[i].getName();
-                    switch (nom) {
-                        case "+5 Dexterity Vest":
-                            System.out.println(items[i].toString());
-
-                            System.out.println(items[i].toString());
-                            break;
-
-                        case "Aged Brie":
-                            System.out.println(items[i].toString());
-
-                            System.out.println(items[i].toString());
-                            break;
-
-                        case "Elixir of the Mongoose":
-                            System.out.println(items[i].toString());
-
-                            System.out.println(items[i].toString());
-                            break;
-
-                        case "Sulfuras, Hand of Ragnaros":
-                            System.out.println(items[i].toString());
-
-                            System.out.println(items[i].toString());
-                            break;
-
-                        case "Backstage passes to a TAFKAL80ETC concert":
-                            System.out.println(items[i].toString());
-
-                            System.out.println(items[i].toString());
-                            break;
-
-                        case "Conjured Mana Cake":
-                            System.out.println(items[i].toString());
-
-                            items[i].toString();
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-            }
-        };
-        updateButton.setOnAction(event);
+    public void updateQuality(){
+        this.inventory.updateQuality();
+        displayItemsDetails(inventory);
 
     }
 }
