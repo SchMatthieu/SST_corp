@@ -9,8 +9,16 @@ public class Conjured_Mana_Cake extends Item{
         this.quality=7;
         this.sellIn=19;
     }
+
     public Conjured_Mana_Cake(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
+    }
+  
+  public Conjured_Mana_Cake(String name)
+    {
+        this.name = name;
+        this.quality=12;
+        this.sellIn=17;
     }
 
     public void updateQuality(){
@@ -25,5 +33,5 @@ public class Conjured_Mana_Cake extends Item{
         if(this.sellIn > 0) {
             this.sellIn = this.sellIn - 1;
         }
-    }
+
 }

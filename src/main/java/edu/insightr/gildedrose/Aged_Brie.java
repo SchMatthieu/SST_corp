@@ -1,7 +1,6 @@
 package edu.insightr.gildedrose;
 
 
-
 public class Aged_Brie extends Item {
 
     public  Aged_Brie()
@@ -11,10 +10,19 @@ public class Aged_Brie extends Item {
         this.sellIn=10;
     }
 
+
     public Aged_Brie(String name, int sellIn, int quality) {
         super(name,sellIn,quality);
 
     }
+  
+  public Aged_Brie(String name)
+    {
+        this.name = name;
+        this.quality=12;
+        this.sellIn=17;
+    }
+  
     public void updateQuality()
     { super.updateQuality();
         if (this.sellIn > 0) {
@@ -27,3 +35,4 @@ public class Aged_Brie extends Item {
     }
 
 }
+

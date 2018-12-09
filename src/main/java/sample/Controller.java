@@ -47,6 +47,7 @@ public class Controller implements Initializable {
         }
         return item;
     }
+
     public void fetchItems(){
         this.inventory = new Inventory();
 
@@ -68,7 +69,9 @@ public class Controller implements Initializable {
             textfield_quality.setText(String.valueOf(item.getQuality()));
             textfield_name.setText(item.getName());
             textfield_sellin.setText(String.valueOf(item.getSellIn()));
-            typeField.setText(String.valueOf(item.getClass()));
+            String[] tmp = String.valueOf(item.getClass()).split("\\.");
+            typeField.setText(tmp[tmp.length-1]);
+
         }
         catch (Exception e)
         {
@@ -76,11 +79,13 @@ public class Controller implements Initializable {
         }
     }
 
+
     public void updateQuality(){
         this.inventory.updateQuality();
         displayItemsDetails(inventory);
 
     }
+
 }
 
 

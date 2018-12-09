@@ -1,3 +1,4 @@
+
 package edu.insightr.gildedrose;
 
 public abstract class Item {
@@ -58,4 +59,5 @@ public abstract class Item {
     {
 
     }
+
 }
