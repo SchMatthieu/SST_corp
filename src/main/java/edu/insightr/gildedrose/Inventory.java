@@ -1,6 +1,5 @@
 package edu.insightr.gildedrose;
-import java.util.ArrayList;
-import java.util.List;
+
 public class Inventory {
 
     private Item[] items;
@@ -17,12 +16,13 @@ public class Inventory {
     public Inventory() {
         super();
         items = new Item[]{
-                new Item("+5 Dexterity Vest", 10, 20),
-                new Item("Aged Brie", 2, 0),
-                new Item("Elixir of the Mongoose", 5, 7),
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item("Conjured Mana Cake", 3, 6)
+                new Aged_Brie(),
+                new Backstage_passes_to_a_TAFKAL80ETC_concert(),
+                new Conjured_Mana_Cake(),
+                new Dexterity_Vest(),
+                new Elixir_of_the_Mongoose(),
+                new Sulfuras_Hand_of_Ragnaros(),
+                new Dexterity_Vest("+5 Dexterity Vest", 14, 50)
         };
 
     }
@@ -35,13 +35,19 @@ public class Inventory {
         System.out.println("***************");
         System.out.println("\n");
     }
-    public List<String> toList(){
-        List<String> list_tmp = new ArrayList<>();
-        for (Item item : items){
-            list_tmp.add(item.getName());
+
+    public void updateQuality() {
+
+        this.updateSellin();
+
+        for(int i = 0; i < items.length; i++) {
+
+            items[i].updateQuality();
+
         }
-        return  list_tmp;
     }
+
+
 
     public void updateSellin()
     {
@@ -51,11 +57,7 @@ public class Inventory {
         }
     }
 
-    public void updateQuality() {
-        for (Item item : items){
-            item.updateQuality();
-        }
-    }
+
 
 
     }
