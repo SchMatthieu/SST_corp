@@ -23,6 +23,8 @@ public class ItemsController implements Initializable {
     @FXML
     TextField textfield_quality;
     @FXML
+    TextField typeField;
+    @FXML
     ListView<String> list_items;
 
     public Inventory inventory;
@@ -66,6 +68,7 @@ public class ItemsController implements Initializable {
             textfield_quality.setText(String.valueOf(item.getQuality()));
             textfield_name.setText(item.getName());
             textfield_sellin.setText(String.valueOf(item.getSellIn()));
+            typeField.setText(String.valueOf(item.getClass()));
         }
         catch (Exception e)
         {
