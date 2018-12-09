@@ -1,74 +1,77 @@
 package sample;
 
+
+import edu.insightr.gildedrose.Inventory;
 import edu.insightr.gildedrose.Item;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
-import javafx.scene.control.*;
-
-import java.util.LinkedList;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-
-public class Controller {
-
-    @FXML
-    Label listLab;
+public class Controller implements Initializable {
 
     @FXML
-    Label sellinLab;
-
+    TextField textfield_name;
     @FXML
-    Label qualityLab;
-
+    TextField textfield_sellin;
     @FXML
-    Label nameLab;
-
-    @FXML
-    Label typeLab;
-
-    @FXML
-    ListView<String> listItem;
-
-    @FXML
-    TextField sellinField;
-
-    @FXML
-    TextField quality;
-
-    @FXML
-    TextField nameField;
-
+    TextField textfield_quality;
     @FXML
     TextField typeField;
+    @FXML
+    ListView<String> list_items;
 
-    List<Item> listOfItem = new LinkedList<>();
+    public Inventory inventory;
 
-
-    private Item fetchItem(String name)
+    public void initialize(URL location, ResourceBundle resources) {
+        fetchItems();
+        list_items.getSelectionModel().selectedItemProperty().addListener(e->
+                displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
+    }
+    private Item fetchItemByName(String name)
     {
         Item item = null;
-        for(int i = 0; i < listOfItem.size();i++)
+        for(int i = 0; i < this.inventory.getItems().length;i++)
         {
-            if(listOfItem.get(i).getName().compareTo(name) == 0)
+            if(this.inventory.getItems()[i].getName().compareTo(name) == 0)
             {
-                item = listOfItem.get(i);
+                item = this.inventory.getItems()[i];
                 break;
             }
         }
         return item;
     }
 
-    private void displaDetail(String name)
+    public void fetchItems(){
+        this.inventory = new Inventory();
+
+        ObservableList<String> listItems;
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < inventory.getItems().length;i++)
+        {
+            list.add(inventory.getItems()[i].getName());
+        }
+        listItems = FXCollections.observableArrayList(list);
+        list_items.setItems(listItems);
+    }
+    private void displayItemsDetails(Object o)
     {
         try
         {
-            Item item = fetchItem(name);
-            quality.setText(String.valueOf(item.getQuality()));
-            nameField.setText(item.getName());
-            sellinField.setText(String.valueOf(item.getSellIn()));
+            String name = (String) o;
+            Item item = fetchItemByName(name);
+            textfield_quality.setText(String.valueOf(item.getQuality()));
+            textfield_name.setText(item.getName());
+            textfield_sellin.setText(String.valueOf(item.getSellIn()));
             String[] tmp = String.valueOf(item.getClass()).split("\\.");
             typeField.setText(tmp[tmp.length-1]);
-
         }
         catch (Exception e)
         {

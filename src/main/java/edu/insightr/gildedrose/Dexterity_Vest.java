@@ -7,6 +7,7 @@ public class Dexterity_Vest extends Item{
         this.name = "+5 Dexterity Vest";
         this.quality=25;
         this.sellIn=0;
+
     }
 
     public Dexterity_Vest(String name)
@@ -23,7 +24,6 @@ public class Dexterity_Vest extends Item{
         this.sellIn = sellIn;
         this.quality = quality;
     }
-
 
 
 }

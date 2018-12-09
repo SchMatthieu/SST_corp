@@ -23,5 +23,4 @@ public class Sulfuras_Hand_of_Ragnaros extends Item{
         this.sellIn = sellIn;
         this.quality = quality;
     }
-
 }

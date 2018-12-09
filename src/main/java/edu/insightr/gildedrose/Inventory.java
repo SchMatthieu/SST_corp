@@ -1,7 +1,5 @@
 package edu.insightr.gildedrose;
 
-
-
 public class Inventory {
 
     private Item[] items;

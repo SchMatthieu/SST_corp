@@ -24,6 +24,4 @@ public class Conjured_Mana_Cake extends Item{
         this.sellIn = sellIn;
         this.quality = quality;
     }
-
-
 }
