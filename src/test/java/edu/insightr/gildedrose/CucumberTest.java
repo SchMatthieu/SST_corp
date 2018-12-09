@@ -32,11 +32,10 @@ public class CucumberTest {
         assertThat(itemConjured.getSellIn(), is(16));
     }
     @Test
-    public void dataPassedQualityCheck()
+    public void datePassedQualityCheck()
     {
         Inventory inv = new Inventory();
         Item[] ancienneListeDesItems = inv.getItems();
-
         Item itemConjured = ancienneListeDesItems[3];
         assertThat(itemConjured.sellIn, is(0));
         assertThat(itemConjured.getName(), is("+5 Dexterity Vest"));

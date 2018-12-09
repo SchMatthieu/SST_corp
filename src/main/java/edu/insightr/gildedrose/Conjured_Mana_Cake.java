@@ -15,15 +15,15 @@ public class Conjured_Mana_Cake extends Item{
 
     public void updateQuality(){
         super.updateQuality();
-        if(getQuality() >= 2){
-            setQuality(getQuality() - 2);
-            if (getSellIn() == 0 && getQuality() >= 2){
-                setQuality(getQuality() - 2);
+        if(this.quality >= 2){
+            this.quality  = this.quality  - 2;
+            if (this.sellIn == 0 &&  this.quality >= 2){
+                this.quality  = this.quality  - 2;
             }
         }
-        if(getQuality() == 1) setQuality(0);
-        if(getSellIn() > 0) {
-            setSellIn(getSellIn() - 1);
+        if(this.quality == 1) this.quality = 0;
+        if(this.sellIn > 0) {
+            this.sellIn = this.sellIn - 1;
         }
     }
 }

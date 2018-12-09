@@ -53,7 +53,7 @@ public class Inventory {
     {
         for(int i = 0; i < items.length; i++)
         {
-            items[i].setSellIn(items[i].getSellIn() - 1);
+            if(items[i].getSellIn()>0) items[i].setSellIn(items[i].getSellIn() - 1);
         }
     }
 
