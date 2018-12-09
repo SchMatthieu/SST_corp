@@ -51,7 +51,7 @@ Feature: Conjured Item
     Then the quality of the Backstage passes to a TAFKAL80ETC concert item is 12
     And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 9
     When I update the inventory
-    Then the quality of the  Aged Brie item is 14
+    Then the quality of Backstage passes to a TAFKAL80ETC concert item is 14
     And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 8
 
   Scenario: Backstage passes to a TAFKAL80ETC concert item update
@@ -59,7 +59,7 @@ Feature: Conjured Item
     Then the quality of the Backstage passes to a TAFKAL80ETC concert item is 14
     And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 4
     When I update the inventory
-    Then the quality of the  Aged Brie item is 17
+    Then the quality of Backstage passes to a TAFKAL80ETC concert item is 17
     And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 3
 
 
