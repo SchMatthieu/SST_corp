@@ -6,14 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ItemsController {
+public class ItemsController{
+
     @FXML
     TextField textfield_name;
     @FXML
@@ -22,18 +23,8 @@ public class ItemsController {
     TextField textfield_quality;
     @FXML
     ListView<String> list_items;
-    @FXML
-    Label label_list;
-    @FXML
-    Label label_sellin;
-    @FXML
-    Label label_quality;
-    @FXML
-    Label label_name;
-    @FXML
-    Button button_upgrade;
 
-    Inventory inventory;
+    public Inventory inventory;
 
     public void initialize(URL location, ResourceBundle resources) {
         fetchItems();
@@ -43,31 +34,33 @@ public class ItemsController {
     private Item fetchItemByName(String name)
     {
         Item item = null;
-        for(int i = 0; i < inventory.getItems().length;i++)
+        for(int i = 0; i < this.inventory.getItems().length;i++)
         {
-            if(inventory.getItems()[i].getName().compareTo(name) == 0)
+            if(this.inventory.getItems()[i].getName().compareTo(name) == 0)
             {
-                item = inventory.getItems()[i];
+                item = this.inventory.getItems()[i];
                 break;
             }
         }
         return item;
     }
     public void fetchItems(){
+        this.inventory = new Inventory();
+
         ObservableList<String> listItems;
         List<String> list = new ArrayList<>();
-        for(int i =0; i < inventory.getItems().length;i++)
+        for(int i = 0; i < inventory.getItems().length;i++)
         {
             list.add(inventory.getItems()[i].getName());
         }
         listItems = FXCollections.observableArrayList(list);
         list_items.setItems(listItems);
     }
-
-    private void displayItemsDetails(String name)
+    private void displayItemsDetails(Object o)
     {
         try
         {
+            String name = (String) o;
             Item item = fetchItemByName(name);
             textfield_quality.setText(String.valueOf(item.getQuality()));
             textfield_name.setText(item.getName());

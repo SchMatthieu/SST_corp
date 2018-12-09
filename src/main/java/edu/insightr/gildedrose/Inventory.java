@@ -1,6 +1,6 @@
 package edu.insightr.gildedrose;
 
-import javax.xml.ws.BindingType;
+//import javax.xml.ws.BindingType;
 
 public class Inventory {
 
