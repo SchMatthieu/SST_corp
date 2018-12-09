@@ -11,6 +11,7 @@
 
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
 
+
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -37,3 +38,4 @@
    </children>
 
 </GridPane>
+

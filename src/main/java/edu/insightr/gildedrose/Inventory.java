@@ -1,3 +1,4 @@
+
 package edu.insightr.gildedrose;
 
 public class Inventory {
@@ -37,16 +38,31 @@ public class Inventory {
     }
 
     public void updateQuality() {
- 
+
+        this.updateSellin();
+
+        for(int i = 0; i < items.length; i++) {
+
+            items[i].updateQuality();
+
+        }
     }
+
+
 
     public void updateSellin()
     {
         for(int i = 0; i < items.length; i++)
         {
-            items[i].setSellIn(items[i].getSellIn() - 1);
+            if(items[i].getSellIn()>0) items[i].setSellIn(items[i].getSellIn() - 1);
         }
     }
+
+
+
+
+    
+
 
 
     public static void main(String[] args) {
@@ -57,3 +73,4 @@ public class Inventory {
         }
     }
 }
+

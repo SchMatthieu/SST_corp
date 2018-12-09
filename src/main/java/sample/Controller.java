@@ -1,6 +1,5 @@
 package sample;
 
-
 import edu.insightr.gildedrose.Inventory;
 import edu.insightr.gildedrose.Item;
 import javafx.collections.FXCollections;
@@ -72,6 +71,7 @@ public class Controller implements Initializable {
             textfield_sellin.setText(String.valueOf(item.getSellIn()));
             String[] tmp = String.valueOf(item.getClass()).split("\\.");
             typeField.setText(tmp[tmp.length-1]);
+
         }
         catch (Exception e)
         {
@@ -79,4 +79,13 @@ public class Controller implements Initializable {
         }
     }
 
+
+    public void updateQuality(){
+        this.inventory.updateQuality();
+        displayItemsDetails(inventory);
+
+    }
+
 }
+
+

@@ -1,3 +1,4 @@
+
 package edu.insightr.gildedrose;
 
 import org.junit.Test;
@@ -6,7 +7,7 @@ import static org.hamcrest.core.Is.is;
 
 public class CucumberTest {
 
-    @Test
+   @Test
     public void qualityCheck()
     {
         Inventory inv = new Inventory();
@@ -18,7 +19,7 @@ public class CucumberTest {
         inv.updateQuality();
         assertThat(itemConjured.getQuality(), is(4));
     }
-
+  
     @Test
     public void agedBrieQualityCheck()
     {
@@ -31,13 +32,12 @@ public class CucumberTest {
         inv.updateQuality();
         assertThat(itemConjured.getQuality(), is(18));
     }
-
+  
     @Test
-    public void dataPassedQualityCheck()
+    public void datePassedQualityCheck()
     {
         Inventory inv = new Inventory();
         Item[] ancienneListeDesItems = inv.getItems();
-
         Item itemConjured = ancienneListeDesItems[3];
         assertThat(itemConjured.sellIn, is(0));
         assertThat(itemConjured.getName(), is("+5 Dexterity Vest"));
@@ -74,6 +74,6 @@ public class CucumberTest {
     }
 
 
-
 }
+
 

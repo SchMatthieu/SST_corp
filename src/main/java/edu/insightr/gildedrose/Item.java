@@ -1,3 +1,4 @@
+
 package edu.insightr.gildedrose;
 
 public abstract class Item {
@@ -13,13 +14,14 @@ public abstract class Item {
         this.sellIn = 25;
         this.quality = 17;
     }
-
     public Item(String name, int sellIn, int quality) {
         super();
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
     }
+
+
 
     public String getName() {
         return name;
@@ -53,4 +55,9 @@ public abstract class Item {
                 ", quality=" + quality +
                 '}';
     }
+    public void updateQuality()
+    {
+
+    }
+
 }

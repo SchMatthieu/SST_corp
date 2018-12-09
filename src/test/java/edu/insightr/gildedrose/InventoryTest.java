@@ -76,7 +76,7 @@ public class InventoryTest {
         Item[] item = inv.getItems();
         for(int i = 0; i < item.length; i++)
         {
-            if(ancienneListeDesItems[i].getName().contains("Sulfuras"))
+            if(ancienneListeDesItems[i].getName().contains("Sulfuras_Hand_of_Ragnaros"))
             {
                 assertEquals(ancienneListeDesItems[i].getQuality(), item[i].getQuality());
                 assertEquals(item[i].getSellIn(), 0);
@@ -91,7 +91,7 @@ public class InventoryTest {
         Item[] item = inv.getItems();
         for(int i = 0; i < item.length; i++)
         {
-            if(ancienneListeDesItems[i].getName().contains("Backstage"))
+            if(ancienneListeDesItems[i].getName().contains("Backstage_passes_to_a_TAFKAL80ETC_concert"))
             {
                 if(ancienneListeDesItems[i].getSellIn() <= 10 && ancienneListeDesItems[i].getSellIn() > 5) assertEquals(ancienneListeDesItems[i].getQuality(), item[i].getQuality()-2);
                 if(ancienneListeDesItems[i].getSellIn() <= 5 && ancienneListeDesItems[i].getSellIn() > 0) assertEquals(ancienneListeDesItems[i].getQuality(), item[i].getQuality()-3);
