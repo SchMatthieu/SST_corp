@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ItemsController implements Initializable {
+public class Controller implements Initializable {
 
     @FXML
     TextField textfield_name;
@@ -68,7 +68,8 @@ public class ItemsController implements Initializable {
             textfield_quality.setText(String.valueOf(item.getQuality()));
             textfield_name.setText(item.getName());
             textfield_sellin.setText(String.valueOf(item.getSellIn()));
-            typeField.setText(String.valueOf(item.getClass()));
+            String[] tmp = String.valueOf(item.getClass()).split("\\.");
+            typeField.setText(tmp[tmp.length-1]);
         }
         catch (Exception e)
         {
