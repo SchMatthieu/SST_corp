@@ -5,7 +5,7 @@ public class Elixir_of_the_Mongoose extends Item {
     public Elixir_of_the_Mongoose()
     {
         this.name = "Elixir of the Mongoose";
-        this.quality=9;
+        this.quality=0;
         this.sellIn=10;
     }
 
@@ -23,10 +23,5 @@ public class Elixir_of_the_Mongoose extends Item {
         this.sellIn = sellIn;
         this.quality = quality;
     }
-
-  /*  public void accept(IVisitor visitor)
-    {
-        visitor.visit(this);
-    }*/
 
 }

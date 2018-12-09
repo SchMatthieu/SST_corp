@@ -1,5 +1,6 @@
 package sample;
 
+
 import edu.insightr.gildedrose.Inventory;
 import edu.insightr.gildedrose.Item;
 import javafx.collections.FXCollections;
@@ -47,6 +48,7 @@ public class Controller implements Initializable {
         }
         return item;
     }
+
     public void fetchItems(){
         this.inventory = new Inventory();
 
@@ -76,4 +78,5 @@ public class Controller implements Initializable {
             System.out.println(e.getMessage());
         }
     }
+
 }

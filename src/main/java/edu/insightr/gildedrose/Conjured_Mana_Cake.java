@@ -24,10 +24,4 @@ public class Conjured_Mana_Cake extends Item{
         this.sellIn = sellIn;
         this.quality = quality;
     }
-
-    /* public void accept(IVisitor visitor)
-    {
-        visitor.visit(this);
-    }
-*/
 }
