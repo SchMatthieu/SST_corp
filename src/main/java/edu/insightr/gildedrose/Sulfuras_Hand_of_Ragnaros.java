@@ -25,8 +25,7 @@ public class Sulfuras_Hand_of_Ragnaros extends Item{
 
     public void updateQuality(){
         super.updateQuality();
-        if(this.quality != 80) this.quality = 80;
-        if(this.sellIn != 0) this.sellIn = 0;
+        
     }
 
 
