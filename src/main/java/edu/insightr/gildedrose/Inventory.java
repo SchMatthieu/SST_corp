@@ -23,7 +23,7 @@ public class Inventory {
                 new Dexterity_Vest(),
                 new Elixir_of_the_Mongoose(),
                 new Sulfuras_Hand_of_Ragnaros(),
-                new Aged_Brie("Aged Brie", 14, 50)
+                new Aged_Brie("new Aged Brie", 14, 50)
         };
 
     }
