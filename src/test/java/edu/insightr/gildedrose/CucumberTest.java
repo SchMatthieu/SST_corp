@@ -67,7 +67,7 @@ public class CucumberTest {
         Item[] ancienneListeDesItems = inv.getItems();
 
         Item itemConjured = ancienneListeDesItems[6];
-        assertThat(itemConjured.getName(), is("+5 Dexterity Vest"));
+        assertThat(itemConjured.getName(), is("new Aged Brie"));
         assertThat(itemConjured.getQuality(), is(50));
         inv.updateQuality();
         assertThat(itemConjured.getQuality(), is(50));
