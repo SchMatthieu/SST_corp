@@ -30,8 +30,6 @@ public class Conjured_Mana_Cake extends Item{
             }
         }
         if(this.quality == 1) this.quality = 0;
-        if(this.sellIn > 0) {
-            this.sellIn = this.sellIn - 1;
-        }
+        
     }
 }
