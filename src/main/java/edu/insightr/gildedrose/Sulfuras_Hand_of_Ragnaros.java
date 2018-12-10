@@ -21,12 +21,17 @@ public class Sulfuras_Hand_of_Ragnaros extends Item{
     }
   
 
-    
+    @Override
+    public void setSellIn(int sellIn) {
+
+    }
+    //This item has not to be sold
 
     public void updateQuality(){
         super.updateQuality();
         
     }
+    //Its quality never change
 
 
 }
