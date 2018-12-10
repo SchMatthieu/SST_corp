@@ -42,13 +42,11 @@ public class Backstage_passes_to_a_TAFKAL80ETC_concert extends Item{
                     this.quality=this.quality+1;
                 }
             }
-            if (this.sellIn  == 0) {//ADD
+            if (this.sellIn  == 0) {
                 this.quality = 0;
             }
         }
-        if (this.sellIn  > 0) {
-            this.sellIn = this.sellIn - 1;
-        }
+        
     }
 }
 
