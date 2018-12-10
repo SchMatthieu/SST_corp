@@ -73,6 +73,47 @@ public class CucumberTest {
         assertThat(itemConjured.getQuality(), is(50));
     }
 
+    @Test
+    public void Sulfuras()
+    {
+        Inventory inv = new Inventory();
+        Item[] ancienneListeDesItems = inv.getItems();
+
+        Item itemConjured = ancienneListeDesItems[6];
+        assertThat(itemConjured.getName(), is("Sulfuras Hand of Ragnaros"));
+        assertThat(itemConjured.getQuality(), is(80));
+        assertThat(itemConjured.getSellIn(), is(20));
+        inv.updateQuality();
+        assertThat(itemConjured.getQuality(), is(80));
+        assertThat(itemConjured.getSellIn(), is(20));
+    }
+
+    @Test
+    public void BackstagequalityCheck1()
+    {
+        Inventory inv = new Inventory();
+        Item[] ancienneListeDesItems = inv.getItems();
+        Item itemConjured = ancienneListeDesItems[2];
+        assertThat(itemConjured.getName(), is("Backstage passes to a TAFKAL80ETC concert"));
+        assertThat(itemConjured.getQuality(), is(14));
+        assertThat(itemConjured.getSellIn(), is(4));
+        inv.updateQuality();
+        assertThat(itemConjured.getQuality(), is(17));
+        assertThat(itemConjured.getSellIn(), is(3));
+    }
+    @Test
+    public void BackstagequalityCheck2()
+    {
+        Inventory inv = new Inventory();
+        Item[] ancienneListeDesItems = inv.getItems();
+        Item itemConjured = ancienneListeDesItems[3];
+        assertThat(itemConjured.getName(), is("Backstage passes to a TAFKAL80ETC concert"));
+        assertThat(itemConjured.getQuality(), is(12));
+        assertThat(itemConjured.getSellIn(), is(9));
+        inv.updateQuality();
+        assertThat(itemConjured.getQuality(), is(14));
+        assertThat(itemConjured.getSellIn(), is(8));
+    }
 
 }
 
