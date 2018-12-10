@@ -24,17 +24,17 @@ public class Backstage_passes_to_a_TAFKAL80ETC_concert extends Item{
 
     public void updateQuality() {
         super.updateQuality();
-        if (this.quality <= 49 && this.sellIn >= 11) {
+        if (this.quality <= 49 && this.sellIn > 10) {
 
             this.quality = this.quality +1;
         }
-        if (this.sellIn  <= 10 && this.quality <= 48) {
+        else if (this.sellIn  <= 10 && this.sellIn  > 5 && this.quality <= 48) {
             this.quality = this.quality +2;
         }
-        if (this.sellIn  <= 5) {
-            if (this.quality < 50) {
-                this.quality=this.quality+1;
-            }
+        else if (this.sellIn  <= 5 && this.quality <= 47) {
+            
+                this.quality=this.quality+3;
+            
         }
         if (this.sellIn  == 0) {
             this.quality = 0;
