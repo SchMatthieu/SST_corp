@@ -30,13 +30,4 @@ public class Sulfuras_Hand_of_Ragnaros extends Item{
     }
 
 
-    
-
-    public Sulfuras_Hand_of_Ragnaros(String name, int sellIn, int quality)
-    {
-        super();
-        this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
-    }
 }
