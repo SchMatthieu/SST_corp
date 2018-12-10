@@ -31,7 +31,7 @@
             <TextField fx:id="textfield_name" layoutX="248.0" layoutY="173.0" />
             <TextField fx:id="textfield_sellin" layoutX="248.0" layoutY="239.0" />
             <TextField fx:id="textfield_quality" layoutX="248.0" layoutY="308.0" />
-            <Button fx:id="button_upgrade" layoutX="14.0" layoutY="421.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Update" />
+            <Button fx:id="button_upgrade" layoutX="14.0" layoutY="421.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Update" onAction="#button_upgrade" />
             <TextField fx:id="typeField" layoutX="248.0" layoutY="75.0" />
          </children>
       </AnchorPane>
