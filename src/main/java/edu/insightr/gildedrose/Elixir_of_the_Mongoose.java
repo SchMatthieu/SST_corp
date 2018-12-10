@@ -30,8 +30,6 @@ public class Elixir_of_the_Mongoose extends Item{
                 this.quality = this.quality - 1;
             }
         }
-        if(this.sellIn > 0) {
-            this.sellIn = this.sellIn -1;
-        }
+        
     }
 }
