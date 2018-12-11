@@ -40,4 +40,3 @@ Feature: interface
     Then I have one item less in my inventory
 
 
-
