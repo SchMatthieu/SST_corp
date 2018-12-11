@@ -1,67 +1,43 @@
-Feature: Conjured Item
-  # a conjured item quality decreases twice the normal rate
+Feature: interface
 
-  Scenario: conjured item update
+
+  #items from the JSON files are add to list of items of the inventory
+
+  Scenario: add item from the JSON file
     Given I have a new inventory
-    Then the quality of the conjured item is 6
-    When I update the inventory
-    Then the quality of the conjured item is 4
+    Then the program display the items of the inventory
+    When I read the JSON file
+    Then the item has been add
 
-  Scenario: Aged Brie item update
+  #the proportion of the pie chart are the same as the proprtion of each item of our inventory
+
+  Scenario: the truthworthy of the pie chart
     Given I have a new inventory
-    Then the quality of the Aged Brie item is 10
-    When I update the inventory
-    Then the quality of the  Aged Brie item is 11
+    Then the pie chart is display
+    When I add new items
+    Then  the proportions of the pie chart change
 
-  Scenario: date passed update
+  #the details of each item of the inventory have been updated when we push the button update
+
+  Scenario: update button of the interface
     Given I have a new inventory
-    Then the quality of item is 10
-    And the sellIn is 0
-    When I update the inventory
-    Then the quality of the item is 8
+    Then the items are display
+    When I push the update button
+    Then the items have been update
 
-  Scenario: Quality never negative update
+  #if we add an item the there will be one item more displayed
+
+  Scenario: add button of the interface
     Given I have a new inventory
-    Then the quality of the item is 0
-    When I update the inventory
-    Then the quality of the item is 0
+    When I push the button add
+    Then I have one more item in my inventory
 
-  Scenario: Never more than 50 update
+ #if we delete an item the there will be one item less displayed
+
+  Scenario: delete button of the interface
     Given I have a new inventory
-    Then the quality of the  item is 50
-    When I update the inventory
-    Then the quality of the item is 50
-
- Sulfuras, Hand of Ragnaros item update
-    Given I have a new inventory
-    Then the quality of the Sulfuras, Hand of Ragnaros item is 150
-    And the sellIn of the Sulfuras, Hand of Ragnaros item is 1000
-    When I update the inventory
-    Then the quality of the Sulfuras, Hand of Ragnaros item is 150
-    And the sellIn of the Sulfuras, Hand of Ragnaros item is 1000
-
-  Scenario: Quality never more than 50 update
-    Given I have a new inventory
-    Then the quality of the item is 50
-    When I update the inventory
-    Then the quality of the  Aged Brie item is 50
-
-  Scenario: Backstage passes to a TAFKAL80ETC concert item update
-    Given I have a new inventory
-    Then the quality of the Backstage passes to a TAFKAL80ETC concert item is 12
-    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 9
-    When I update the inventory
-    Then the quality of Backstage passes to a TAFKAL80ETC concert item is 14
-    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 8
-
-  Scenario: Backstage passes to a TAFKAL80ETC concert item update
-    Given I have a new inventory
-    Then the quality of the Backstage passes to a TAFKAL80ETC concert item is 14
-    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 4
-    When I update the inventory
-    Then the quality of Backstage passes to a TAFKAL80ETC concert item is 17
-    And  the sellIn of the Backstage passes to a TAFKAL80ETC concert item is 3
-
+    When I push the button delete
+    Then I have one item less in my inventory
 
 
 
