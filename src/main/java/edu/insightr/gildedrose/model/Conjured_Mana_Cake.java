@@ -1,7 +1,7 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
 
-public class Conjured_Mana_Cake extends Item{
+public class Conjured_Mana_Cake extends Item {
 
     public Conjured_Mana_Cake()
     {
@@ -23,15 +23,16 @@ public class Conjured_Mana_Cake extends Item{
 
     public void updateQuality(){
         super.updateQuality();
-        if(this.quality >= 2){
+         if(this.quality == 1) this.quality = 0;
+        
+        else if(this.quality >= 2){
+            
             this.quality  = this.quality  - 2;
+            
             if (this.sellIn == 0 &&  this.quality >= 2){
                 this.quality  = this.quality  - 2;
             }
         }
-        if(this.quality == 1) this.quality = 0;
-        if(this.sellIn > 0) {
-            this.sellIn = this.sellIn - 1;
-        }
-
+        
+    }
 }

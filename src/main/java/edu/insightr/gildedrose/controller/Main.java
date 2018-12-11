@@ -1,4 +1,4 @@
-package sample;
+package edu.insightr.gildedrose.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +13,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
 
-        URL url = new File("src/main/java/sample/sample.fxml").toURL();
-        Parent root = FXMLLoader.load(url);
+        //URL url = new File("src/main/java/sample/sample.fxml").toURL();
+        //Parent root = FXMLLoader.load(url);
 
         primaryStage.setTitle("Inventory");
         primaryStage.setScene(new Scene(root, 500, 500));

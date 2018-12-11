@@ -1,6 +1,6 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
-public class Dexterity_Vest extends Item{
+public class Dexterity_Vest extends Item {
 
     public Dexterity_Vest(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
@@ -32,9 +32,7 @@ public class Dexterity_Vest extends Item{
                 this.quality = this.quality - 2;
             }
         }
-        if(this.sellIn > 0) {
-            this.sellIn = this.sellIn - 1;
-        }
+       
     }
 
 }

@@ -1,13 +1,21 @@
 
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
 public class Inventory {
 
     private Item[] items;
 
+    private int[] tabProportion;
+
     public Item[] getItems() {
         return items;
     }
+
+    public int[] getProportion()
+    {
+        return this.tabProportion;
+    }
+
 
     public Inventory(Item[] items) {
         super();
@@ -23,9 +31,9 @@ public class Inventory {
                 new Dexterity_Vest(),
                 new Elixir_of_the_Mongoose(),
                 new Sulfuras_Hand_of_Ragnaros(),
-                new Dexterity_Vest("+5 Dexterity Vest", 14, 50)
+                new Aged_Brie("new Aged Brie", 14, 50)
         };
-
+        this.tabProportion = new int[6];
     }
 
     public void printInventory() {
@@ -60,7 +68,22 @@ public class Inventory {
 
 
 
+    public void proportion()
+    {
+        String[] type = { "Aged_Brie", "Backstage_passes_to_a_TAFKAL80ETC_concert",
+                "Conjured_Mana_Cake", "Dexterity_Vest", "Elixir_of_the_Mongoose", "Sulfuras_Hand_of_Ragnaros"};
 
+        for(int i = 0; i < this.tabProportion.length; i++)
+        {
+            for(int j = 0; j < this.items.length; j++)
+            {
+                if(String.valueOf(this.items[j].getClass()).split("\\.")[4].compareTo(type[i])==0)
+                {
+                    this.tabProportion[i]++;
+                }
+            }
+        }
+    }
     
 
 

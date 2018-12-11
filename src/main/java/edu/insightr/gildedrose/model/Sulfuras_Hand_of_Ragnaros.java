@@ -1,6 +1,8 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
-public class Sulfuras_Hand_of_Ragnaros extends Item{
+import edu.insightr.gildedrose.model.Item;
+
+public class Sulfuras_Hand_of_Ragnaros extends Item {
 
     public Sulfuras_Hand_of_Ragnaros(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
@@ -16,27 +18,22 @@ public class Sulfuras_Hand_of_Ragnaros extends Item{
   public Sulfuras_Hand_of_Ragnaros()
     {
         this.name = "Sulfuras, Hand of Ragnaros";
-        this.quality=15;
-        this.sellIn=15;
+        this.quality=80;
+        this.sellIn=20;
     }
   
 
-    
+    @Override
+    public void setSellIn(int sellIn) {
+
+    }
+    //This item has not to be sold
 
     public void updateQuality(){
         super.updateQuality();
-        if(this.quality != 80) this.quality = 80;
-        if(this.sellIn != 0) this.sellIn = 0;
+        
     }
+    //Its quality never change
 
 
-    
-
-    public Sulfuras_Hand_of_Ragnaros(String name, int sellIn, int quality)
-    {
-        super();
-        this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
-    }
 }

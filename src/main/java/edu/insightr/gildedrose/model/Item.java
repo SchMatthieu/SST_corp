@@ -1,5 +1,5 @@
 
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
 public abstract class Item {
 
