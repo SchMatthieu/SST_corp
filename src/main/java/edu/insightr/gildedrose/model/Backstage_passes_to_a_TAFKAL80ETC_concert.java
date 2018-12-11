@@ -1,7 +1,7 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
 
-public class Backstage_passes_to_a_TAFKAL80ETC_concert extends Item{
+public class Backstage_passes_to_a_TAFKAL80ETC_concert extends Item {
 
 
     public Backstage_passes_to_a_TAFKAL80ETC_concert()

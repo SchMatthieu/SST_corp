@@ -1,7 +1,7 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
 
-public class Elixir_of_the_Mongoose extends Item{
+public class Elixir_of_the_Mongoose extends Item {
 
     public Elixir_of_the_Mongoose(String name, int sellIn, int quality) {
         super(name, sellIn, quality);

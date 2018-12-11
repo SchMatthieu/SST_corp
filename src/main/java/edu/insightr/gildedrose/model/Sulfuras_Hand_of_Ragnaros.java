@@ -1,6 +1,8 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
-public class Sulfuras_Hand_of_Ragnaros extends Item{
+import edu.insightr.gildedrose.model.Item;
+
+public class Sulfuras_Hand_of_Ragnaros extends Item {
 
     public Sulfuras_Hand_of_Ragnaros(String name, int sellIn, int quality) {
         super(name, sellIn, quality);

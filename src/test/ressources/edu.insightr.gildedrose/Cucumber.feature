@@ -24,17 +24,19 @@ Feature: interface
     Then the items are display
     When I push the update button
     Then the items have been update
-    
+
   #if we add an item the there will be one item more displayed
 
   Scenario: add button of the interface
     Given I have a new inventory
     When I push the button add
     Then I have one more item in my inventory
-    
+
  #if we delete an item the there will be one item less displayed
 
   Scenario: delete button of the interface
     Given I have a new inventory
     When I push the button delete
     Then I have one item less in my inventory
+
+
