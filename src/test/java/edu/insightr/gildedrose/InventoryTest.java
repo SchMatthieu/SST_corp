@@ -1,5 +1,7 @@
 package edu.insightr.gildedrose;
 
+import edu.insightr.gildedrose.model.Inventory;
+import edu.insightr.gildedrose.model.Item;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

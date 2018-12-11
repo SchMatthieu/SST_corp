@@ -1,7 +1,7 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
 
-public class Conjured_Mana_Cake extends Item{
+public class Conjured_Mana_Cake extends Item {
 
     public Conjured_Mana_Cake()
     {

@@ -1,5 +1,5 @@
 
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
 public class Inventory {
 
@@ -15,6 +15,7 @@ public class Inventory {
     {
         return this.tabProportion;
     }
+
 
     public Inventory(Item[] items) {
         super();
@@ -76,10 +77,10 @@ public class Inventory {
         {
             for(int j = 0; j < this.items.length; j++)
             {
-                 if(String.valueOf(this.items[j].getClass()).split("\\.")[3].compareTo(type[i])==0)
-                 {
-                      this.tabProportion[i]++;
-                 }
+                if(String.valueOf(this.items[j].getClass()).split("\\.")[4].compareTo(type[i])==0)
+                {
+                    this.tabProportion[i]++;
+                }
             }
         }
     }

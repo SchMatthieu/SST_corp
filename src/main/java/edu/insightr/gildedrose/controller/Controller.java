@@ -1,20 +1,18 @@
-package sample;
+package edu.insightr.gildedrose.controller;
 
-import edu.insightr.gildedrose.Inventory;
-import edu.insightr.gildedrose.Item;
+import edu.insightr.gildedrose.model.Inventory;
+import edu.insightr.gildedrose.model.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
-import javafx.scene.chart.*;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.Group;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +32,8 @@ public class Controller implements Initializable {
     ListView<String> list_items;
     @FXML
     PieChart pie;
+    @FXML
+    Button addButton;
 
     public Inventory inventory;
 
@@ -89,12 +89,11 @@ public class Controller implements Initializable {
     }
 
 
-    public void updateQuality(){
+    public void updateQuality()
+    {
         this.inventory.updateQuality();
         displayItemsDetails(inventory);
-
     }
-
 
     public void pieChart()
     {
@@ -107,11 +106,26 @@ public class Controller implements Initializable {
                 new PieChart.Data("Elixir_of_the_Mongoose", this.inventory.getProportion()[4]),
                 new PieChart.Data("Sulfuras_Hand_of_Ragnaros", this.inventory.getProportion()[5]));
 
-       pie.setData(pieChartData);
-       pie.setLegendSide(Side.BOTTOM);
-       pie.setLabelLineLength(100);
-       pie.setLabelsVisible(true);
-       pie.setTitle("Proportion of each item");
+        pie.setData(pieChartData);
+        pie.setLegendSide(Side.BOTTOM);
+        pie.setLabelLineLength(100);
+        pie.setLabelsVisible(true);
+        pie.setTitle("Proportion of each item");
+
+
+    }
+
+    public void addButton()
+    {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Choose a file");
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            chooser.getSelectedFile();
+        } else {
+            System.out.println("No Selection ");
+        }
 
 
     }

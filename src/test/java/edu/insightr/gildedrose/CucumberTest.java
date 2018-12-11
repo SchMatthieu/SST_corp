@@ -1,6 +1,8 @@
 
 package edu.insightr.gildedrose;
 
+import edu.insightr.gildedrose.model.Inventory;
+import edu.insightr.gildedrose.model.Item;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -39,7 +41,7 @@ public class CucumberTest {
         Inventory inv = new Inventory();
         Item[] ancienneListeDesItems = inv.getItems();
         Item itemConjured = ancienneListeDesItems[3];
-        assertThat(itemConjured.sellIn, is(0));
+        assertThat(itemConjured.getSellIn(), is(0));
         assertThat(itemConjured.getName(), is("+5 Dexterity Vest"));
         assertThat(itemConjured.getQuality(), is(25));
         inv.updateQuality();

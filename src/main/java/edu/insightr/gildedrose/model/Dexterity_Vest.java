@@ -1,6 +1,6 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.model;
 
-public class Dexterity_Vest extends Item{
+public class Dexterity_Vest extends Item {
 
     public Dexterity_Vest(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
