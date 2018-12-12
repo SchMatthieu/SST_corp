@@ -129,7 +129,29 @@ public class Controller implements Initializable {
 
 
     }
+    public void deleteButton(){
+        int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
+        list_items.getItems().remove(selectedIdx);
+        Item[] tmp = new Item[this.inventory.getItems().length-1];
+        for(int i = 0; i < tmp.length; i ++)
+        {
+            if(i < selectedIdx)
+            {
+                tmp[i] = this.inventory.getItems()[i];
+            }
+            else if(i > selectedIdx)
+            {
+                tmp[i] = this.inventory.getItems()[i+1];
+            }
 
-}
+        }
+        this.inventory.setItems(tmp);
+    }
+
+
+    }
+
+
+
 
 

@@ -3,6 +3,8 @@ package edu.insightr.gildedrose.model;
 
 public class Inventory {
 
+
+
     private Item[] items;
 
     private int[] tabProportion;
@@ -16,7 +18,9 @@ public class Inventory {
         return this.tabProportion;
     }
 
-
+    public void setItems(Item[] items) {
+        this.items = items;
+    }
     public Inventory(Item[] items) {
         super();
         this.items = items;
