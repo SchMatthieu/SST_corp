@@ -1,5 +1,6 @@
 package edu.insightr.gildedrose.controller;
 
+import cucumber.runtime.io.Resource;
 import edu.insightr.gildedrose.model.Inventory;
 import edu.insightr.gildedrose.model.Item;
 import edu.insightr.gildedrose.model.JSON;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller  {
 
     @FXML
     TextField textfield_name;
@@ -35,11 +36,16 @@ public class Controller implements Initializable {
     PieChart pie;
     @FXML
     Button addButton;
+    @FXML
+    private ResourceBundle resource;
+    @FXML
+    private URL location;
 
 
-    public Inventory inventory;
 
-    public void initialize(URL location, ResourceBundle resources) {
+    public Inventory inventory = new Inventory();
+
+    public void initialize() {
         fetchItems();
         list_items.getSelectionModel().selectedItemProperty().addListener(e->
                 displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
@@ -60,7 +66,6 @@ public class Controller implements Initializable {
     }
 
     public void fetchItems(){
-        this.inventory = new Inventory();
 
         ObservableList<String> listItems;
         List<String> list = new ArrayList<>();
@@ -132,12 +137,13 @@ public class Controller implements Initializable {
         }
         fetchItems();
         pieChart();
+
     }
 
     public void deleteButton()
     {
         int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
-        list_items.getItems().remove(selectedIdx);
+
         Item[] tmp = new Item[this.inventory.getItems().length-1];
         for(int i = 0; i < tmp.length; i ++)
         {
@@ -152,7 +158,11 @@ public class Controller implements Initializable {
 
         }
         this.inventory.setItems(tmp);
+        /*
+        fetchItems();
         pieChart();
+        */
+        initialize();
     }
 
 
