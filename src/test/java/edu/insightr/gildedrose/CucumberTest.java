@@ -25,7 +25,7 @@ public class CucumberTest {
     {
         Inventory inv = new Inventory();
 
-        inv.proportion();
+        inv.proportion(inv.getItems());
         int prop = inv.getProportion()[2];
         assertThat(prop, is(1));
     }

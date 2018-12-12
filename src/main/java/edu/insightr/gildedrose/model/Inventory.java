@@ -72,16 +72,20 @@ public class Inventory {
 
 
 
-    public void proportion()
+    public void proportion(Item[] tab)
     {
         String[] type = { "Aged_Brie", "Backstage_passes_to_a_TAFKAL80ETC_concert",
                 "Conjured_Mana_Cake", "Dexterity_Vest", "Elixir_of_the_Mongoose", "Sulfuras_Hand_of_Ragnaros"};
 
+        for(int i = 0; i < tabProportion.length; i++)
+        {
+            this.tabProportion[i]=0;
+        }
         for(int i = 0; i < this.tabProportion.length; i++)
         {
-            for(int j = 0; j < this.items.length; j++)
+            for(int j = 0; j < tab.length; j++)
             {
-                if(String.valueOf(this.items[j].getClass()).split("\\.")[4].compareTo(type[i])==0)
+                if(String.valueOf(tab[j].getClass()).split("\\.")[4].compareTo(type[i])==0)
                 {
                     this.tabProportion[i]++;
                 }

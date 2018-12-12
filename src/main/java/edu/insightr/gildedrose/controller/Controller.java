@@ -118,11 +118,12 @@ public class Controller  {
     {
         this.inventory.updateQuality();
         displayItemsDetails(inventory);
+        initialize();
     }
 
     public void pieChart()
     {
-        this.inventory.proportion();
+        this.inventory.proportion(this.inventory.getItems());
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Aged_Brie", this.inventory.getProportion()[0]),
                 new PieChart.Data("Backstage_passes_to_a_TAFKAL80ETC_concert", this.inventory.getProportion()[1]),
@@ -161,7 +162,7 @@ public class Controller  {
     public void deleteButton()
     {
         int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
-
+        list_items.getItems().remove(selectedIdx);
         Item[] tmp = new Item[this.inventory.getItems().length-1];
         for(int i = 0; i < tmp.length; i ++)
         {
@@ -180,7 +181,7 @@ public class Controller  {
         fetchItems();
         pieChart();
         */
-        initialize();
+        pieChart();
     }
 
     public void onNew(){
