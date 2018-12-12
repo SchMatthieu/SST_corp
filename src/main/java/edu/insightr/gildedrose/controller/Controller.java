@@ -1,9 +1,8 @@
 package edu.insightr.gildedrose.controller;
 
+import edu.insightr.gildedrose.model.*;
+import javafx.scene.control.ComboBox;
 import cucumber.runtime.io.Resource;
-import edu.insightr.gildedrose.model.Inventory;
-import edu.insightr.gildedrose.model.Item;
-import edu.insightr.gildedrose.model.JSON;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,18 +36,37 @@ public class Controller  {
     @FXML
     Button addButton;
     @FXML
+    Button btnDelete;
+    @FXML
+    Button btnAdd;
+    @FXML
     private ResourceBundle resource;
     @FXML
     private URL location;
-
+    @FXML
+    Button btnSave;
+    @FXML
+    Button btnCancel;
+    @FXML
+    ComboBox cmbType;
 
 
     public Inventory inventory = new Inventory();
 
     public void initialize() {
+        List<String> tValues = new ArrayList<String>();
+        tValues.add("Aged_Brie");
+        tValues.add("Backstage_passes_to_a_TAFKAL80ETC_concert");
+        tValues.add("Conjured_Mana_Cake");
+        tValues.add("Dexterity_Vest");
+        tValues.add("Elixir_of_the_Mongoose");
+        tValues.add("Sulfuras_Hand_of_Ragnaros");
+        ObservableList<String> gender = FXCollections.observableArrayList(tValues);
+        cmbType.setItems(gender);
         fetchItems();
         list_items.getSelectionModel().selectedItemProperty().addListener(e->
                 displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
+
         pieChart();
     }
     private Item fetchItemByName(String name)
@@ -165,7 +183,66 @@ public class Controller  {
         initialize();
     }
 
+    public void onNew(){
+        btnSave.setDisable(false);
+        btnCancel.setDisable(false);
 
+        cmbType.setValue(null);
+        textfield_name.setText(null);
+        textfield_sellin.setText(null);
+        textfield_quality.setText(null);
+    }
+
+    public void onSave(){
+        Item tmp = null;
+
+        if(cmbType.getValue() == "Aged_Brie")
+        {
+            tmp = new Aged_Brie(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() =="Backstage_passes_to_a_TAFKAL80ETC_concert")
+        {
+            tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() == "Conjured_Mana_Cake")
+        {
+            tmp = new Conjured_Mana_Cake(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() == "Dexterity_Vest")
+        {
+            tmp = new Dexterity_Vest(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() == "Elixir_of_the_Mongoose")
+        {
+            tmp = new Elixir_of_the_Mongoose(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() == "Sulfuras_Hand_of_Ragnaros")
+        {
+            tmp = new Sulfuras_Hand_of_Ragnaros(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+
+        onCancel();
+
+        inventory.setItems(addList(tmp));
+
+        initialize();
+    }
+
+    public void onCancel(){
+        btnSave.setDisable(true);
+        btnCancel.setDisable(true);
+    }
+
+    public Item[] addList(Item item){
+        Item[] newList = new Item[inventory.getItems().length + 1];
+        for(int i = 0; i < inventory.getItems().length; i++)
+        {
+            newList[i] = inventory.getItems()[i];
+        }
+        newList[newList.length - 1] = item;
+
+        return newList;
+    }
 
 }
 
