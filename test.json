@@ -1,0 +1,15 @@
+[
+  {
+    "name":"Sulfuras Hand of Ragnaros",
+    "type":"Sulfuras_Hand_of_Ragnaros",
+    "sellIn" : 0,
+    "quality" : 80
+
+  },
+  {
+    "name":"Aged Brie",
+    "type":"Aged_Brie",
+    "sellIn":12,
+    "quality":17
+  }
+]

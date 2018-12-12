@@ -2,6 +2,7 @@ package edu.insightr.gildedrose.controller;
 
 import edu.insightr.gildedrose.model.Inventory;
 import edu.insightr.gildedrose.model.Item;
+import edu.insightr.gildedrose.model.JSON;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,6 +35,7 @@ public class Controller implements Initializable {
     PieChart pie;
     @FXML
     Button addButton;
+
 
     public Inventory inventory;
 
@@ -115,20 +117,45 @@ public class Controller implements Initializable {
 
     }
 
-    public void addButton()
-    {
+    public void addButton() {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Choose a file");
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            chooser.getSelectedFile();
+            String[] test = String.valueOf(chooser.getSelectedFile()).split("\\\\");
+            String path = test[test.length-1];
+            System.out.println(path);
+            JSON.ReadJson(path, this.inventory.getItems(), this.inventory);
         } else {
             System.out.println("No Selection ");
         }
-
-
+        fetchItems();
+        pieChart();
     }
+
+    public void deleteButton()
+    {
+        int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
+        list_items.getItems().remove(selectedIdx);
+        Item[] tmp = new Item[this.inventory.getItems().length-1];
+        for(int i = 0; i < tmp.length; i ++)
+        {
+            if(i < selectedIdx)
+            {
+                tmp[i] = this.inventory.getItems()[i];
+            }
+            else if(i > selectedIdx)
+            {
+                tmp[i] = this.inventory.getItems()[i+1];
+            }
+
+        }
+        this.inventory.setItems(tmp);
+        pieChart();
+    }
+
+
 
 }
 

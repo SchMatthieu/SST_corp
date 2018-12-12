@@ -16,6 +16,10 @@ public class Inventory {
         return this.tabProportion;
     }
 
+    public void setItems(Item[] items)
+    {
+        this.items = items;
+    }
 
     public Inventory(Item[] items) {
         super();

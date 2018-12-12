@@ -36,6 +36,9 @@
             <TextField fx:id="typeField" layoutX="248.0" layoutY="75.0" />
             <PieChart fx:id="pie" layoutX="441.0" layoutY="1.0" prefHeight="510.0" prefWidth="442.0" title="Proportion of each item" />
             <Button fx:id="addButton" layoutX="246.0" layoutY="422.0" mnemonicParsing="false" onAction="#addButton" prefHeight="26.0" prefWidth="158.0" text="Add a file" />
+            <Button fx:id="addItemButton" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Add an item" />
+
+            <Button fx:id="deleteItemButton" layoutX="139.0" layoutY="457.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Delete an item" onAction="#deleteButton"/>
          </children>
       </AnchorPane>
    </children>
