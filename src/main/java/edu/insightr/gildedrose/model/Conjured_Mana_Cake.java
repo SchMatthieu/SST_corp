@@ -5,6 +5,7 @@ public class Conjured_Mana_Cake extends Item {
 
     public Conjured_Mana_Cake()
     {
+        super();
         this.name = "Conjured Mana Cake";
         this.quality=7;
         this.sellIn=19;

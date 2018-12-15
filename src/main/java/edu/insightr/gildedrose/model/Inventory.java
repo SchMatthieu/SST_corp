@@ -1,14 +1,17 @@
 
 package edu.insightr.gildedrose.model;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Inventory {
 
     private Item[] items;
 
     private int[] tabProportion;
+
+    private int[] tabSellIn;
+    private LocalDate[] tabDate;
 
     public Item[] getItems() {
         return items;
@@ -22,6 +25,16 @@ public class Inventory {
     public void setItems(Item[] items)
     {
         this.items = items;
+    }
+
+    public int[] getTabSellIn()
+    {
+        return this.tabSellIn;
+    }
+
+    public LocalDate[] getTabDate()
+    {
+        return this.tabDate;
     }
 
     public Inventory(Item[] items) {
@@ -38,9 +51,11 @@ public class Inventory {
                 new Dexterity_Vest(),
                 new Elixir_of_the_Mongoose(),
                 new Sulfuras_Hand_of_Ragnaros(),
-                //new Aged_Brie("new Aged Brie", 14, 50)
+                new Aged_Brie("new Aged Brie", 14, 50, 2018, 7, 30)
         };
         this.tabProportion = new int[6];
+        this.tabSellIn = new int[0];
+        this.tabDate = new LocalDate[0];
     }
 
     public void printInventory() {
@@ -63,8 +78,6 @@ public class Inventory {
         }
     }
 
-
-
     public void updateSellin()
     {
         for(int i = 0; i < items.length; i++)
@@ -72,8 +85,6 @@ public class Inventory {
             if(items[i].getSellIn()>0) items[i].setSellIn(items[i].getSellIn() - 1);
         }
     }
-
-
 
     public void proportion(Item[] tab)
     {
@@ -103,9 +114,9 @@ public class Inventory {
         for(int i = 0; i < this.items.length; i++)
         {
             boolean pres = false;
-            for(int j = 0; i < count.size(); i++)
+            for(int j = 0; j < count.size(); j++)
             {
-                if(this.items[i].sellIn == count.get(i))
+                if(this.items[i].sellIn == count.get(j))
                 {
                     pres = true;
                     break;
@@ -118,30 +129,80 @@ public class Inventory {
         return count;
     }
 
-    public int[][] getSellInOfAllItem()
+    public int[] getSellInOfAllItem()
     {
         LinkedList<Integer> count = presence();
-        int[][] mat = new int[count.size()][2];
-        for(int i = 0; i<1; i++)
+        int[] tab1 = new int[count.size()];
+        int[] tab2 = new int[count.size()];
+
+         for(int j = 0; j < count.size(); j++)
+         {
+             tab1[j] = count.get(j);
+         }
+
+        for(int i = 0; i < this.items.length; i++)
         {
-            for(int j = 0; j < mat[i].length; j++)
+            for(int j = 0; j < tab2.length; j++)
             {
-                mat[i][j] = count.get(i);
+                if(tab1[j] == this.items[i].sellIn)
+                {
+                    tab2[j]++;
+                    break;
+                }
             }
+        }
+        this.tabSellIn = tab1;
+        return tab2;
+    }
+
+
+    public LinkedList<LocalDate> presenceDate()
+    {
+        LinkedList<LocalDate> count = new LinkedList<>();
+
+        for(int i = 0; i < this.items.length; i++)
+        {
+            boolean pres = false;
+            for(int j = 0; j < count.size(); j++)
+            {
+                if(this.items[i].date.compareTo(count.get(j)) == 0)
+                {
+                    pres = true;
+                    break;
+                }
+            }
+            if(pres== false) {
+                count.add(this.items[i].date);
+            }
+        }
+        return count;
+    }
+
+    public int[] LocalDateCount()
+    {
+        LinkedList<LocalDate> count = presenceDate();
+        LocalDate[] tab1 = new LocalDate[count.size()];
+        int[] tab2 = new int[count.size()];
+
+        for(int j = 0; j < count.size(); j++)
+        {
+            tab1[j] = count.get(j);
         }
 
         for(int i = 0; i < this.items.length; i++)
         {
-            for(int j = 0; j < mat[i].length; j++)
+            for(int j = 0; j < tab2.length; j++)
             {
-
+                if(tab1[j].compareTo(this.items[i].date) == 0)
+                {
+                    tab2[j]++;
+                    break;
+                }
             }
         }
-
-
-        return mat;
+        this.tabDate = tab1;
+        return tab2;
     }
-
 
     public static void main(String[] args) {
         Inventory inventory = new Inventory();

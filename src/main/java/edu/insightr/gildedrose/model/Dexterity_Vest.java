@@ -8,6 +8,7 @@ public class Dexterity_Vest extends Item {
   
     public Dexterity_Vest(String name)
     {
+        super();
         this.name = name;
         this.quality=12;
         this.sellIn=17;

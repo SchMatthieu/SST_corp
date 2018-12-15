@@ -9,6 +9,7 @@ public class Elixir_of_the_Mongoose extends Item {
 
     public Elixir_of_the_Mongoose()
     {
+        super();
         this.name = "Elixir of the Mongoose";
         this.quality=0;
         this.sellIn=10;

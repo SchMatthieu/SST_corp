@@ -2,16 +2,15 @@ package edu.insightr.gildedrose.controller;
 
 import edu.insightr.gildedrose.model.*;
 import javafx.application.Platform;
+import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.chart.BarChart;
 
 import javax.swing.*;
 import java.net.URL;
@@ -59,9 +58,9 @@ public class Controller  {
     @FXML
     BarChart bar1;
     @FXML
-    BarChart bar2;
-    @FXML
     public Button closeButton;
+    @FXML
+    BarChart bar2;
 
 
     public Inventory inventory = new Inventory();
@@ -81,6 +80,8 @@ public class Controller  {
                 displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
 
         pieChart();
+        barChartSellIn();
+        barChartDate();
         bar1.setVisible(false);
         bar2.setVisible(false);
         pie.setVisible(false);
@@ -298,12 +299,28 @@ public class Controller  {
 
     public void barChartDate()
     {
-
+        int i = 0;
+        while(i < this.inventory.LocalDateCount().length)
+        {
+            XYChart.Series series1 = new XYChart.Series();
+            int[] tab = this.inventory.LocalDateCount();
+            series1.getData().add(new XYChart.Data(String.valueOf(this.inventory.getTabDate()[i]), tab[i]));
+            bar1.getData().add(series1);
+            i++;
+        }
     }
 
     public void barChartSellIn()
     {
-
+        int i = 0;
+        while(i < this.inventory.getSellInOfAllItem().length)
+        {
+            XYChart.Series series1 = new XYChart.Series();
+            int[] tab = this.inventory.getSellInOfAllItem();
+            series1.getData().add(new XYChart.Data(String.valueOf(this.inventory.getTabSellIn()[i]), tab[i]));
+            bar2.getData().add(series1);
+            i++;
+        }
     }
 
 

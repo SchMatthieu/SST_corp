@@ -5,6 +5,7 @@ public class Aged_Brie extends Item {
 
     public  Aged_Brie()
     {
+        super();
         this.name = "Aged Brie";
         this.quality=17;
         this.sellIn=10;
