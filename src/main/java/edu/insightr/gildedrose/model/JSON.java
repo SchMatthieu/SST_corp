@@ -40,9 +40,8 @@ public class JSON {
         // System.out.print(tmp);
     }
 
-//, Item[] ancienneListeDesItems, Inventory inventory
 
-    public static void ReadJson(String nameFile){
+    public static void ReadJson(String nameFile, Item[] ancienneListeDesItems, Inventory inventory){
         List<Item> item = new ArrayList<Item>();
         JSONParser parser = new JSONParser();
 
@@ -93,19 +92,9 @@ public class JSON {
                     item.add(NewSulfura);
                 }
 
-           /*     Item[] tmp = new Item[ancienneListeDesItems.length + item.size()];
-                {
-                    for(int i = 0; i < ancienneListeDesItems.length; i++)
-                    {
-                        tmp[i] = ancienneListeDesItems[i];
-                    }
-                    for(int i = 0; i < tmp.length; i++)
-                    {
-                        tmp[i+ancienneListeDesItems.length] = tmp[i];
-                    }
-                }
-                inventory.setItems(tmp);*/
+
             }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -113,5 +102,21 @@ public class JSON {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        Item[] tmp = new Item[ancienneListeDesItems.length + item.size()];
+        for(int i = 0; i < ancienneListeDesItems.length; i++)
+        {
+            tmp[i] = ancienneListeDesItems[i];
+        }
+        for(int i = 0; i < item.size(); i++)
+        {
+            tmp[i+ancienneListeDesItems.length] = item.get(i);
+        }
+
+        inventory.setItems(tmp);
+
     }
+
+
+
 }

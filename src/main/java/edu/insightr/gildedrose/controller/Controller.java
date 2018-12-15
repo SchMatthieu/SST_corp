@@ -1,7 +1,8 @@
 package edu.insightr.gildedrose.controller;
 
-import edu.insightr.gildedrose.model.Inventory;
-import edu.insightr.gildedrose.model.Item;
+import edu.insightr.gildedrose.model.*;
+import javafx.scene.control.ComboBox;
+import cucumber.runtime.io.Resource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller  {
 
     @FXML
     TextField textfield_name;
@@ -34,13 +35,38 @@ public class Controller implements Initializable {
     PieChart pie;
     @FXML
     Button addButton;
+    @FXML
+    Button btnDelete;
+    @FXML
+    Button btnAdd;
+    @FXML
+    private ResourceBundle resource;
+    @FXML
+    private URL location;
+    @FXML
+    Button btnSave;
+    @FXML
+    Button btnCancel;
+    @FXML
+    ComboBox cmbType;
 
-    public Inventory inventory;
 
-    public void initialize(URL location, ResourceBundle resources) {
+    public Inventory inventory = new Inventory();
+
+    public void initialize() {
+        List<String> tValues = new ArrayList<String>();
+        tValues.add("Aged_Brie");
+        tValues.add("Backstage_passes_to_a_TAFKAL80ETC_concert");
+        tValues.add("Conjured_Mana_Cake");
+        tValues.add("Dexterity_Vest");
+        tValues.add("Elixir_of_the_Mongoose");
+        tValues.add("Sulfuras_Hand_of_Ragnaros");
+        ObservableList<String> gender = FXCollections.observableArrayList(tValues);
+        cmbType.setItems(gender);
         fetchItems();
         list_items.getSelectionModel().selectedItemProperty().addListener(e->
                 displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
+
         pieChart();
     }
     private Item fetchItemByName(String name)
@@ -57,8 +83,8 @@ public class Controller implements Initializable {
         return item;
     }
 
+
     public void fetchItems(){
-        this.inventory = new Inventory();
 
         ObservableList<String> listItems;
         List<String> list = new ArrayList<>();
@@ -93,11 +119,12 @@ public class Controller implements Initializable {
     {
         this.inventory.updateQuality();
         displayItemsDetails(inventory);
+        initialize();
     }
 
     public void pieChart()
     {
-        this.inventory.proportion();
+        this.inventory.proportion(this.inventory.getItems());
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Aged_Brie", this.inventory.getProportion()[0]),
                 new PieChart.Data("Backstage_passes_to_a_TAFKAL80ETC_concert", this.inventory.getProportion()[1]),
@@ -115,43 +142,108 @@ public class Controller implements Initializable {
 
     }
 
-    public void addButton()
-    {
+    public void addButton() {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Choose a file");
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            chooser.getSelectedFile();
+            String[] test = String.valueOf(chooser.getSelectedFile()).split("\\\\");
+            String path = test[test.length-1];
+            System.out.println(path);
+            JSON.ReadJson(path, this.inventory.getItems(), this.inventory);
         } else {
             System.out.println("No Selection ");
         }
-
+        fetchItems();
+        pieChart();
 
     }
-    public void deleteButton(){
+
+    public void deleteButton()
+    {
+        this.inventory.setItems(SoldButton());
+       initialize();
+    }
+
+    public Item[] SoldButton()
+    {
         int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
-        list_items.getItems().remove(selectedIdx);
-        Item[] tmp = new Item[this.inventory.getItems().length-1];
-        for(int i = 0; i < tmp.length; i ++)
+        Item deleteObject = fetchItemByName(list_items.getSelectionModel().getSelectedItem());
+        Item[] newList = new Item[inventory.getItems().length - 1];
+       for(int i = 0 ; i <newList.length; i++)
         {
-            if(i < selectedIdx)
-            {
-                tmp[i] = this.inventory.getItems()[i];
-            }
-            else if(i > selectedIdx)
-            {
-                tmp[i] = this.inventory.getItems()[i+1];
-            }
+            newList[i] = inventory.getItems()[i];
 
+            if( newList[i] == deleteObject)
+            {
+                for(int j = selectedIdx ; j < newList.length; j++) {
+                    newList[j] = inventory.getItems()[j + 1];
+                }
+                break;
+            }
         }
-        this.inventory.setItems(tmp);
+        return newList;
+    }
+    public void onNew(){
+        btnSave.setDisable(false);
+        btnCancel.setDisable(false);
+
+        cmbType.setValue(null);
+        textfield_name.setText(null);
+        textfield_sellin.setText(null);
+        textfield_quality.setText(null);
     }
 
+    public void onSave(){
+        Item tmp = null;
 
+        if(cmbType.getValue() == "Aged_Brie")
+        {
+            tmp = new Aged_Brie(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() =="Backstage_passes_to_a_TAFKAL80ETC_concert")
+        {
+            tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() == "Conjured_Mana_Cake")
+        {
+            tmp = new Conjured_Mana_Cake(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() == "Dexterity_Vest")
+        {
+            tmp = new Dexterity_Vest(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() == "Elixir_of_the_Mongoose")
+        {
+            tmp = new Elixir_of_the_Mongoose(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+        if(cmbType.getValue() == "Sulfuras_Hand_of_Ragnaros")
+        {
+            tmp = new Sulfuras_Hand_of_Ragnaros(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+        }
+
+        onCancel();
+
+        inventory.setItems(addList(tmp));
+
+        initialize();
     }
 
+    public void onCancel(){
+        btnSave.setDisable(true);
+        btnCancel.setDisable(true);
+    }
 
+    public Item[] addList(Item item){
+        Item[] newList = new Item[inventory.getItems().length + 1];
+        for(int i = 0; i < inventory.getItems().length; i++)
+        {
+            newList[i] = inventory.getItems()[i];
+        }
+        newList[newList.length - 1] = item;
 
+        return newList;
+    }
 
-
+}

@@ -99,5 +99,25 @@ public class Inventory {
             inventory.printInventory();
         }
     }
+    public void proportion(Item[] tab)
+    {
+        String[] type = { "Aged_Brie", "Backstage_passes_to_a_TAFKAL80ETC_concert",
+                "Conjured_Mana_Cake", "Dexterity_Vest", "Elixir_of_the_Mongoose", "Sulfuras_Hand_of_Ragnaros"};
+
+        for(int i = 0; i < tabProportion.length; i++)
+        {
+            this.tabProportion[i]=0;
+        }
+        for(int i = 0; i < this.tabProportion.length; i++)
+        {
+            for(int j = 0; j < tab.length; j++)
+            {
+                if(String.valueOf(tab[j].getClass()).split("\\.")[4].compareTo(type[i])==0)
+                {
+                    this.tabProportion[i]++;
+                }
+            }
+        }
+    }
 }
 
