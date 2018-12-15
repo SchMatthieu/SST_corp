@@ -19,7 +19,7 @@ public class Main extends Application {
         //Parent root = FXMLLoader.load(url);
 
         primaryStage.setTitle("Inventory");
-        primaryStage.setScene(new Scene(root, 500, 500));
+        primaryStage.setScene(new Scene(root, 1000, 520));
         primaryStage.show();
     }
 

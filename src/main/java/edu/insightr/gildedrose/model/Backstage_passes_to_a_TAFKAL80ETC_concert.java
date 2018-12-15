@@ -11,8 +11,8 @@ public class Backstage_passes_to_a_TAFKAL80ETC_concert extends Item {
         this.sellIn=17;
     }
 
-    public Backstage_passes_to_a_TAFKAL80ETC_concert(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    public Backstage_passes_to_a_TAFKAL80ETC_concert(String name, int sellIn, int quality, int year, int month, int day) {
+        super(name,sellIn,quality, year, month, day);
     }
   
   public Backstage_passes_to_a_TAFKAL80ETC_concert(String name)

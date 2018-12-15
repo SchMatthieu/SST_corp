@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,14 @@ public class JSON {
 
             JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(nameFile));
             for(Object o : jsonArray) {
+
+                LocalDate today = LocalDate.now();
+                String time = String.valueOf(today);
+                String[] temp = time.split("-");
+                int year = Integer.valueOf(temp[0]);
+                int month = Integer.valueOf(temp[2]);
+                int day = Integer.valueOf(temp[1]);
+
                 JSONObject jsonObject = (JSONObject) o;
                 //   System.out.println(jsonObject);
 
@@ -65,30 +74,30 @@ public class JSON {
                 //System.out.println(quality);
 
                 if (type.compareTo("Aged_Brie") == 0) {
-                    Aged_Brie NewAgedBrie = new Aged_Brie(name, sellIn, quality);
+                    Aged_Brie NewAgedBrie = new Aged_Brie(name, sellIn, quality, year, month, day);
                     item.add(NewAgedBrie);
                 }
                 else  if (type.compareTo("Backstage_passes_to_a_TAFKAL80ETC_concert") == 0) {
-                    Backstage_passes_to_a_TAFKAL80ETC_concert NewBackstage = new Backstage_passes_to_a_TAFKAL80ETC_concert(type, sellIn, quality);
+                    Backstage_passes_to_a_TAFKAL80ETC_concert NewBackstage = new Backstage_passes_to_a_TAFKAL80ETC_concert(type, sellIn, quality, year, month, day);
                     item.add(NewBackstage);
                 }
                 else  if (type.compareTo("Conjured_Mana_Cake") == 0) {
 
-                    Conjured_Mana_Cake NewConjured = new Conjured_Mana_Cake(name, sellIn, quality);
+                    Conjured_Mana_Cake NewConjured = new Conjured_Mana_Cake(name, sellIn, quality, year, month, day);
                     item.add(NewConjured);
                 }
                 else if (type.compareTo("Dexterity_Vest") == 0) {
 
-                    Dexterity_Vest NewDexterity = new Dexterity_Vest(name, sellIn, quality);
+                    Dexterity_Vest NewDexterity = new Dexterity_Vest(name, sellIn, quality, year, month, day);
                     item.add(NewDexterity);
                 }
                 else  if (type.compareTo("Elixir_of_the_Mongoose") == 0) {
 
-                    Elixir_of_the_Mongoose NewElixir = new Elixir_of_the_Mongoose(name, sellIn, quality);
+                    Elixir_of_the_Mongoose NewElixir = new Elixir_of_the_Mongoose(name, sellIn, quality, year, month, day);
                     item.add(NewElixir);
                 }
                 else  if (type.compareTo("Sulfuras_Hand_of_Ragnaros") == 0) {
-                    Sulfuras_Hand_of_Ragnaros NewSulfura = new Sulfuras_Hand_of_Ragnaros(name, sellIn, quality);
+                    Sulfuras_Hand_of_Ragnaros NewSulfura = new Sulfuras_Hand_of_Ragnaros(name, sellIn, quality, year, month, day);
                     item.add(NewSulfura);
                 }
 

@@ -1,6 +1,9 @@
 
 package edu.insightr.gildedrose.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Inventory {
 
     private Item[] items;
@@ -35,7 +38,7 @@ public class Inventory {
                 new Dexterity_Vest(),
                 new Elixir_of_the_Mongoose(),
                 new Sulfuras_Hand_of_Ragnaros(),
-                new Aged_Brie("new Aged Brie", 14, 50)
+                //new Aged_Brie("new Aged Brie", 14, 50)
         };
         this.tabProportion = new int[6];
     }
@@ -92,8 +95,52 @@ public class Inventory {
             }
         }
     }
-    
 
+    public LinkedList<Integer> presence()
+    {
+        LinkedList<Integer> count = new LinkedList<>();
+
+        for(int i = 0; i < this.items.length; i++)
+        {
+            boolean pres = false;
+            for(int j = 0; i < count.size(); i++)
+            {
+                if(this.items[i].sellIn == count.get(i))
+                {
+                    pres = true;
+                    break;
+                }
+            }
+            if(pres== false) {
+                count.add(this.items[i].sellIn);
+            }
+        }
+        return count;
+    }
+
+    public int[][] getSellInOfAllItem()
+    {
+        LinkedList<Integer> count = presence();
+        int[][] mat = new int[count.size()][2];
+        for(int i = 0; i<1; i++)
+        {
+            for(int j = 0; j < mat[i].length; j++)
+            {
+                mat[i][j] = count.get(i);
+            }
+        }
+
+        for(int i = 0; i < this.items.length; i++)
+        {
+            for(int j = 0; j < mat[i].length; j++)
+            {
+
+            }
+        }
+
+
+        return mat;
+    }
 
 
     public static void main(String[] args) {
