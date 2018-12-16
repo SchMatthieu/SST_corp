@@ -4,8 +4,8 @@ import edu.insightr.gildedrose.model.Item;
 
 public class Sulfuras_Hand_of_Ragnaros extends Item {
 
-    public Sulfuras_Hand_of_Ragnaros(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    public Sulfuras_Hand_of_Ragnaros(String name, int sellIn, int quality, int year, int month, int day) {
+        super(name,sellIn,quality, year, month, day);
     }
   
   public Sulfuras_Hand_of_Ragnaros(String name)
@@ -17,6 +17,7 @@ public class Sulfuras_Hand_of_Ragnaros extends Item {
   
   public Sulfuras_Hand_of_Ragnaros()
     {
+        super();
         this.name = "Sulfuras, Hand of Ragnaros";
         this.quality=80;
         this.sellIn=20;

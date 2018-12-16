@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,14 @@ public class JSON {
 
             JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(nameFile));
             for(Object o : jsonArray) {
+
+                LocalDate today = LocalDate.now();
+                String time = String.valueOf(today);
+                String[] temp = time.split("-");
+                int year = Integer.valueOf(temp[0]);
+                int month = Integer.valueOf(temp[2]);
+                int day = Integer.valueOf(temp[1]);
+
                 JSONObject jsonObject = (JSONObject) o;
                 //   System.out.println(jsonObject);
 
@@ -65,21 +75,27 @@ public class JSON {
                 //System.out.println(quality);
 
                 if (type.compareTo("Aged_Brie") == 0) {
+
                     Aged_Brie NewAgedBrie = new Aged_Brie(name, sellIn, quality);
                     item.add(NewAgedBrie);
                 }
                 else  if (type.compareTo("Backstage_passes_to_a_TAFKAL80ETC_concert") == 0) {
                     Backstage_passes_to_a_TAFKAL80ETC_concert NewBackstage = new Backstage_passes_to_a_TAFKAL80ETC_concert(type, sellIn, quality);
+
                     item.add(NewBackstage);
                 }
                 else  if (type.compareTo("Conjured_Mana_Cake") == 0) {
 
+
                     Conjured_Mana_Cake NewConjured = new Conjured_Mana_Cake(name, sellIn, quality);
+
                     item.add(NewConjured);
                 }
                 else if (type.compareTo("Dexterity_Vest") == 0) {
 
+
                     Dexterity_Vest NewDexterity = new Dexterity_Vest(name, sellIn, quality);
+
                     item.add(NewDexterity);
                 }
                 else  if (type.compareTo("Elixir_of_the_Mongoose") == 0) {
@@ -89,6 +105,7 @@ public class JSON {
                 }
                 else  if (type.compareTo("Sulfuras_Hand_of_Ragnaros") == 0) {
                     Sulfuras_Hand_of_Ragnaros NewSulfura = new Sulfuras_Hand_of_Ragnaros(name, sellIn, quality);
+
                     item.add(NewSulfura);
                 }
 
@@ -104,6 +121,7 @@ public class JSON {
         }
 
         Item[] tmp = new Item[ancienneListeDesItems.length + item.size()];
+
         for(int i = 0; i < ancienneListeDesItems.length; i++)
         {
             tmp[i] = ancienneListeDesItems[i];
@@ -113,6 +131,8 @@ public class JSON {
             tmp[i+ancienneListeDesItems.length] = item.get(i);
         }
 
+
+
         inventory.setItems(tmp);
 
     }
@@ -120,3 +140,4 @@ public class JSON {
 
 
 }
+

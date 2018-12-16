@@ -1,8 +1,9 @@
 
 package edu.insightr.gildedrose;
 
-import edu.insightr.gildedrose.model.Inventory;
-import edu.insightr.gildedrose.model.Item;
+import edu.insightr.gildedrose.controller.Controller;
+import edu.insightr.gildedrose.model.*;
+import javafx.fxml.FXML;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -14,18 +15,17 @@ public class CucumberTest {
     {
         Inventory inv = new Inventory();
 
-        assertThat(inv.getItems().length, is(6));
-        //read JSON
-        assertThat(inv.getItems().length, is(10));
+        assertThat(inv.getItems().length, is(7));
+        JSON.ReadJson("test.json", inv.getItems(), inv);
+        assertThat(inv.getItems().length, is(9));
     }
 
     @Test
     public void truthWorthy()
     {
         Inventory inv = new Inventory();
-        Item[] ancienneListeDesItems = inv.getItems();
 
-        inv.proportion();
+        inv.proportion(inv.getItems());
         int prop = inv.getProportion()[2];
         assertThat(prop, is(1));
     }
@@ -43,20 +43,46 @@ public class CucumberTest {
         assertThat(itemConjured.getQuality(), is(23));
     }
 
-
-   @Test
-    public void qualityCheck()
+    @Test
+    public void addButton()
     {
-        Inventory inv = new Inventory();
-        Item[] ancienneListeDesItems = inv.getItems();
+        Inventory inventory = new Inventory();
+        assertThat(inventory.getItems().length, is(6));
+        Item item = new Dexterity_Vest();
+        Item[] newList = new Item[inventory.getItems().length + 1];
+        for(int i = 0; i < inventory.getItems().length; i++)
+        {
+            newList[i] = inventory.getItems()[i];
+        }
+        newList[newList.length - 1] = item;
+        inventory.setItems(newList);
 
-        Item itemConjured = ancienneListeDesItems[5];
-        assertThat(itemConjured.getName(), is("Conjured Mana Cake"));
-        assertThat(itemConjured.getQuality(), is(6));
-        inv.updateQuality();
-        assertThat(itemConjured.getQuality(), is(4));
+        assertThat(inventory.getItems().length, is(7));
     }
-  
+
+    @Test
+    public void deleteButton()
+    {
+        Inventory inventory = new Inventory();
+
+        assertThat(inventory.getItems().length, is(7));
+        Item[] tmp = new Item[inventory.getItems().length-1];
+        int selectedIdx = 1;
+        for(int i = 0; i < tmp.length; i ++)
+        {
+            if(i < selectedIdx)
+            {
+                tmp[i] = inventory.getItems()[i];
+            }
+            else if(i > selectedIdx)
+            {
+                tmp[i] = inventory.getItems()[i+1];
+            }
+
+        }
+        inventory.setItems(tmp);
+        assertThat(inventory.getItems().length, is(6));
+    }
 
 
 }
