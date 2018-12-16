@@ -21,7 +21,7 @@ public class CucumberTest {
     }
 
     @Test
-    public void truthWorthy()
+    public void truthWorthyPie()
     {
         Inventory inv = new Inventory();
 
