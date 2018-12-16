@@ -292,11 +292,11 @@ public class Controller  {
     public void barChartDate()
     {
         bar1.getData().clear();
+        int[] tab = this.inventory.LocalDateCount();
         int i = 0;
         while(i < this.inventory.LocalDateCount().length)
         {
             XYChart.Series series1 = new XYChart.Series();
-            int[] tab = this.inventory.LocalDateCount();
             series1.getData().add(new XYChart.Data(String.valueOf(this.inventory.getTabDate()[i]), tab[i]));
             bar1.getData().add(series1);
             i++;
@@ -307,10 +307,10 @@ public class Controller  {
     {
         bar2.getData().clear();
         int i = 0;
+        int[] tab = this.inventory.getSellInOfAllItem();
         while(i < this.inventory.getSellInOfAllItem().length)
         {
             XYChart.Series series1 = new XYChart.Series();
-            int[] tab = this.inventory.getSellInOfAllItem();
             series1.getData().add(new XYChart.Data(String.valueOf(this.inventory.getTabSellIn()[i]), tab[i]));
             bar2.getData().add(series1);
             i++;
