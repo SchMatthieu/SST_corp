@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,25 +74,21 @@ public class JSON {
                 //System.out.println(quality);
 
                 if (type.compareTo("Aged_Brie") == 0) {
-
                     Aged_Brie NewAgedBrie = new Aged_Brie(name, sellIn, quality);
                     item.add(NewAgedBrie);
                 }
                 else  if (type.compareTo("Backstage_passes_to_a_TAFKAL80ETC_concert") == 0) {
                     Backstage_passes_to_a_TAFKAL80ETC_concert NewBackstage = new Backstage_passes_to_a_TAFKAL80ETC_concert(type, sellIn, quality);
-
                     item.add(NewBackstage);
                 }
                 else  if (type.compareTo("Conjured_Mana_Cake") == 0) {
 
                     Conjured_Mana_Cake NewConjured = new Conjured_Mana_Cake(name, sellIn, quality);
-
                     item.add(NewConjured);
                 }
                 else if (type.compareTo("Dexterity_Vest") == 0) {
 
                     Dexterity_Vest NewDexterity = new Dexterity_Vest(name, sellIn, quality);
-
                     item.add(NewDexterity);
                 }
                 else  if (type.compareTo("Elixir_of_the_Mongoose") == 0) {
@@ -118,17 +113,14 @@ public class JSON {
         }
 
         Item[] tmp = new Item[ancienneListeDesItems.length + item.size()];
-
-        for(int i = 0; i < ancienneListeDesItems.length; i++)
-        {
-            tmp[i] = ancienneListeDesItems[i];
-        }
-        for(int i = 0; i < item.size(); i++)
-        {
-            tmp[i+ancienneListeDesItems.length] = item.get(i);
-        }
-
-
+            for(int i = 0; i < ancienneListeDesItems.length; i++)
+            {
+                tmp[i] = ancienneListeDesItems[i];
+            }
+            for(int i = 0; i < item.size(); i++)
+            {
+                tmp[i+ancienneListeDesItems.length] = item.get(i);
+            }
 
         inventory.setItems(tmp);
 
@@ -137,4 +129,3 @@ public class JSON {
 
 
 }
-
