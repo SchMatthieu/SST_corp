@@ -6,6 +6,8 @@ import java.util.LinkedList;
 
 public class Inventory {
 
+
+
     private Item[] items;
 
     private int[] tabProportion;
@@ -22,6 +24,7 @@ public class Inventory {
         return this.tabProportion;
     }
 
+
     public void setItems(Item[] items)
     {
         this.items = items;
@@ -36,6 +39,7 @@ public class Inventory {
     {
         return this.tabDate;
     }
+
 
     public Inventory(Item[] items) {
         super();
@@ -209,6 +213,26 @@ public class Inventory {
         for (int i = 0; i < 10; i++) {
             inventory.updateQuality();
             inventory.printInventory();
+        }
+    }
+    public void proportion(Item[] tab)
+    {
+        String[] type = { "Aged_Brie", "Backstage_passes_to_a_TAFKAL80ETC_concert",
+                "Conjured_Mana_Cake", "Dexterity_Vest", "Elixir_of_the_Mongoose", "Sulfuras_Hand_of_Ragnaros"};
+
+        for(int i = 0; i < tabProportion.length; i++)
+        {
+            this.tabProportion[i]=0;
+        }
+        for(int i = 0; i < this.tabProportion.length; i++)
+        {
+            for(int j = 0; j < tab.length; j++)
+            {
+                if(String.valueOf(tab[j].getClass()).split("\\.")[4].compareTo(type[i])==0)
+                {
+                    this.tabProportion[i]++;
+                }
+            }
         }
     }
 }
