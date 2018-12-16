@@ -56,9 +56,9 @@
             <PieChart fx:id="pie" layoutX="441.0" layoutY="1.0" prefHeight="510.0" prefWidth="442.0" title="Proportion of each item" />
             <Button fx:id="addButton" layoutX="246.0" layoutY="422.0" mnemonicParsing="false" onAction="#addButton" prefHeight="26.0" prefWidth="158.0" text="Add a file" />
             <Button fx:id="btnAdd" layoutX="14.0" layoutY="452.0" mnemonicParsing="false" onAction="#onNew" prefHeight="26.0" prefWidth="107.0" text="Buy" />
-            <Button fx:id="btnCancel" disable="true" layoutX="348.0" layoutY="453.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="26.0" prefWidth="56.0" text="Cancel" />
+            <Button fx:id="btnCancel" disable="true" layoutX="330.0" layoutY="453.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="26.0" prefWidth="74.0" text="Cancel" />
             <Button fx:id="btnDelete" layoutX="125.0" layoutY="452.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="26.0" prefWidth="107.0" text="Sell" />
-            <Button fx:id="btnSave" disable="true" layoutX="286.0" layoutY="453.0" mnemonicParsing="false" onAction="#onSave" prefHeight="26.0" prefWidth="56.0" text="Confirm" />
+            <Button fx:id="btnSave" disable="true" layoutX="248.0" layoutY="453.0" mnemonicParsing="false" onAction="#onSave" prefHeight="26.0" prefWidth="66.0" text="Confirm" />
             <Button fx:id="pieChartButton" layoutX="325.0" layoutY="349.0" mnemonicParsing="false" onAction="#setPieChartButton" prefHeight="26.0" prefWidth="66.0" text="Pie chart" />
             <Button fx:id="barChartButton1" layoutX="246.0" layoutY="349.0" mnemonicParsing="false" onAction="#setBarChartButton1" prefHeight="26.0" prefWidth="74.0" text="Bar chart 1" />
             <BarChart fx:id="bar1" layoutX="451.0" layoutY="-1.0" prefHeight="512.0" prefWidth="500.0" title="Item by date creation">

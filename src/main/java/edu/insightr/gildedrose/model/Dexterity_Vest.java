@@ -2,8 +2,8 @@ package edu.insightr.gildedrose.model;
 
 public class Dexterity_Vest extends Item {
 
-    public Dexterity_Vest(String name, int sellIn, int quality, int year, int month, int day) {
-        super(name,sellIn,quality, year, month, day);
+    public Dexterity_Vest(String name, int sellIn, int quality) {
+        super(name,sellIn,quality);
     }
   
     public Dexterity_Vest(String name)
