@@ -90,7 +90,7 @@ public class Controller  {
         barChartDate();
         bar1.setVisible(false);
         bar2.setVisible(false);
-        pie.setVisible(false);
+        pie.setVisible(true);
     }
 
     private Item fetchItemByName(String name)
@@ -233,10 +233,6 @@ public class Controller  {
 
         }
         this.inventory.setItems(tmp);
-        /*
-        fetchItems();
-        pieChart();
-        */
         pieChart();
     }
 
@@ -255,34 +251,30 @@ public class Controller  {
 
         LocalDate today = LocalDate.now();
         String time = String.valueOf(today);
-        String[] temp = time.split("-");
-        int year = Integer.valueOf(temp[0]);
-        int month = Integer.valueOf(temp[2]);
-        int day = Integer.valueOf(temp[1]);
 
         if(cmbType.getValue() == "Aged_Brie")
         {
-            tmp = new Aged_Brie(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
+            tmp = new Aged_Brie(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
         }
-        if(cmbType.getValue() =="Backstage_passes_to_a_TAFKAL80ETC_concert")
+        else if(cmbType.getValue() =="Backstage_passes_to_a_TAFKAL80ETC_concert")
         {
-            tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
+            tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
         }
-        if(cmbType.getValue() == "Conjured_Mana_Cake")
+        else if(cmbType.getValue() == "Conjured_Mana_Cake")
         {
-            tmp = new Conjured_Mana_Cake(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
+            tmp = new Conjured_Mana_Cake(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
         }
-        if(cmbType.getValue() == "Dexterity_Vest")
+        else if(cmbType.getValue() == "Dexterity_Vest")
         {
-            tmp = new Dexterity_Vest(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
+            tmp = new Dexterity_Vest(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
         }
-        if(cmbType.getValue() == "Elixir_of_the_Mongoose")
+        else if(cmbType.getValue() == "Elixir_of_the_Mongoose")
         {
-            tmp = new Elixir_of_the_Mongoose(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
+            tmp = new Elixir_of_the_Mongoose(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
         }
-        if(cmbType.getValue() == "Sulfuras_Hand_of_Ragnaros")
+        else if(cmbType.getValue() == "Sulfuras_Hand_of_Ragnaros")
         {
-            tmp = new Sulfuras_Hand_of_Ragnaros(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
+            tmp = new Sulfuras_Hand_of_Ragnaros(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
         }
 
         onCancel();
@@ -337,6 +329,7 @@ public class Controller  {
 
     public void barChartDate()
     {
+        bar1.getData().clear();
         int i = 0;
         while(i < this.inventory.LocalDateCount().length)
         {
@@ -350,6 +343,7 @@ public class Controller  {
 
     public void barChartSellIn()
     {
+        bar2.getData().clear();
         int i = 0;
         while(i < this.inventory.getSellInOfAllItem().length)
         {

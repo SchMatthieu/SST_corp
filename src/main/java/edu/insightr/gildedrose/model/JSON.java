@@ -86,13 +86,11 @@ public class JSON {
                 }
                 else  if (type.compareTo("Conjured_Mana_Cake") == 0) {
 
-
                     Conjured_Mana_Cake NewConjured = new Conjured_Mana_Cake(name, sellIn, quality);
 
                     item.add(NewConjured);
                 }
                 else if (type.compareTo("Dexterity_Vest") == 0) {
-
 
                     Dexterity_Vest NewDexterity = new Dexterity_Vest(name, sellIn, quality);
 
@@ -105,7 +103,6 @@ public class JSON {
                 }
                 else  if (type.compareTo("Sulfuras_Hand_of_Ragnaros") == 0) {
                     Sulfuras_Hand_of_Ragnaros NewSulfura = new Sulfuras_Hand_of_Ragnaros(name, sellIn, quality);
-
                     item.add(NewSulfura);
                 }
 

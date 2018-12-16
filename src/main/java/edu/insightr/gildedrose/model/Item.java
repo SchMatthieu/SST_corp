@@ -18,12 +18,13 @@ public abstract class Item {
         this.quality = 17;
         this.date = LocalDate.of(2018, 10, 1);
     }
-    public Item(String name, int sellIn, int quality, int year, int month, int day) {
+
+    public Item(String name, int sellIn, int quality) {
         super();
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
-        this.date = LocalDate.of(year, month, day);
+        this.date = LocalDate.now();
     }
 
 

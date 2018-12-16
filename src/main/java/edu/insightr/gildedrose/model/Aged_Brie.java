@@ -12,8 +12,8 @@ public class Aged_Brie extends Item {
     }
 
 
-    public Aged_Brie(String name, int sellIn, int quality, int year, int month, int day) {
-        super(name,sellIn,quality, year, month, day);
+    public Aged_Brie(String name, int sellIn, int quality) {
+        super(name,sellIn,quality);
 
     }
   
