@@ -4,8 +4,18 @@ public class Inventory {
 
     private Item[] items;
 
+    private int[] tabProportion;
+
     public Item[] getItems() {
         return items;
+    }
+    public void setItems(Item[] items){
+        this.items = items;
+    }
+
+    public int[] getProportion()
+    {
+        return this.tabProportion;
     }
 
     public Inventory(Item[] items) {
@@ -22,31 +32,61 @@ public class Inventory {
                 new Dexterity_Vest(),
                 new Elixir_of_the_Mongoose(),
                 new Sulfuras_Hand_of_Ragnaros(),
-                new Dexterity_Vest("+5 Dexterity Vest", 14, 50)
+                new Aged_Brie(7, "new Aged Brie", 14, 50)
         };
-
+        this.tabProportion = new int[6];
     }
 
     public void printInventory() {
-        System.out.println("***************");
+        System.out.println("*************");
         for (Item item : items) {
             System.out.println(item);
         }
-        System.out.println("***************");
+        System.out.println("*************");
         System.out.println("\n");
     }
 
     public void updateQuality() {
- 
+
+        this.updateSellin();
+
+        for(int i = 0; i < items.length; i++) {
+
+            items[i].updateQuality();
+
+        }
     }
+
+
 
     public void updateSellin()
     {
         for(int i = 0; i < items.length; i++)
         {
-            items[i].setSellIn(items[i].getSellIn() - 1);
+            if(items[i].getSellIn()>0) items[i].setSellIn(items[i].getSellIn() - 1);
         }
     }
+
+
+
+    public void proportion()
+    {
+        String[] type = { "Aged_Brie", "Backstage_passes_to_a_TAFKAL80ETC_concert",
+                "Conjured_Mana_Cake", "Dexterity_Vest", "Elixir_of_the_Mongoose", "Sulfuras_Hand_of_Ragnaros"};
+
+        for(int i = 0; i < this.tabProportion.length; i++)
+        {
+            for(int j = 0; j < this.items.length; j++)
+            {
+                if(String.valueOf(this.items[j].getClass()).split("\\.")[3].compareTo(type[i])==0)
+                {
+                    this.tabProportion[i]++;
+                }
+            }
+        }
+    }
+
+
 
 
     public static void main(String[] args) {

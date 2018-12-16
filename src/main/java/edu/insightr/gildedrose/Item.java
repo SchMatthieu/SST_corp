@@ -1,7 +1,9 @@
+
 package edu.insightr.gildedrose;
 
 public abstract class Item {
 
+    protected int id;
     protected String name;
     protected int sellIn;
 
@@ -9,16 +11,26 @@ public abstract class Item {
 
     public Item() {
         super();
+        this.id = 0;
         this.name = "Object";
         this.sellIn = 25;
         this.quality = 17;
     }
-
-    public Item(String name, int sellIn, int quality) {
+    public Item(int id, String name, int sellIn, int quality) {
         super();
+        this.id = id;
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -53,4 +65,9 @@ public abstract class Item {
                 ", quality=" + quality +
                 '}';
     }
+    public void updateQuality()
+    {
+
+    }
+
 }
