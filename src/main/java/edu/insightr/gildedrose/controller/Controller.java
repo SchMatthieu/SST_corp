@@ -1,20 +1,20 @@
 package edu.insightr.gildedrose.controller;
 
 import edu.insightr.gildedrose.model.*;
+import javafx.application.Platform;
+import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
-import cucumber.runtime.io.Resource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Side;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -49,6 +49,18 @@ public class Controller  {
     Button btnCancel;
     @FXML
     ComboBox cmbType;
+    @FXML
+    Button pieChartButton;
+    @FXML
+    Button barChartButton1;
+    @FXML
+    Button barChartButton2;
+    @FXML
+    BarChart bar1;
+    @FXML
+    public Button closeButton;
+    @FXML
+    BarChart bar2;
 
 
     public Inventory inventory = new Inventory();
@@ -68,7 +80,13 @@ public class Controller  {
                 displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
 
         pieChart();
+        barChartSellIn();
+        barChartDate();
+        bar1.setVisible(false);
+        bar2.setVisible(false);
+        pie.setVisible(false);
     }
+
     private Item fetchItemByName(String name)
     {
         Item item = null;
@@ -94,6 +112,7 @@ public class Controller  {
         listItems = FXCollections.observableArrayList(list);
         list_items.setItems(listItems);
     }
+
     private void displayItemsDetails(Object o)
     {
         try
@@ -112,7 +131,6 @@ public class Controller  {
             System.out.println(e.getMessage());
         }
     }
-
 
     public void updateQuality()
     {
@@ -197,29 +215,36 @@ public class Controller  {
     public void onSave(){
         Item tmp = null;
 
+        LocalDate today = LocalDate.now();
+        String time = String.valueOf(today);
+        String[] temp = time.split("-");
+        int year = Integer.valueOf(temp[0]);
+        int month = Integer.valueOf(temp[2]);
+        int day = Integer.valueOf(temp[1]);
+
         if(cmbType.getValue() == "Aged_Brie")
         {
-            tmp = new Aged_Brie(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Aged_Brie(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
         }
         if(cmbType.getValue() =="Backstage_passes_to_a_TAFKAL80ETC_concert")
         {
-            tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
         }
         if(cmbType.getValue() == "Conjured_Mana_Cake")
         {
-            tmp = new Conjured_Mana_Cake(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Conjured_Mana_Cake(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
         }
         if(cmbType.getValue() == "Dexterity_Vest")
         {
-            tmp = new Dexterity_Vest(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Dexterity_Vest(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
         }
         if(cmbType.getValue() == "Elixir_of_the_Mongoose")
         {
-            tmp = new Elixir_of_the_Mongoose(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Elixir_of_the_Mongoose(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
         }
         if(cmbType.getValue() == "Sulfuras_Hand_of_Ragnaros")
         {
-            tmp = new Sulfuras_Hand_of_Ragnaros(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Sulfuras_Hand_of_Ragnaros(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()), year, month, day);
         }
 
         onCancel();
@@ -244,6 +269,60 @@ public class Controller  {
 
         return newList;
     }
+
+
+    public void setPieChartButton()
+    {
+        bar1.setVisible(false);
+        bar2.setVisible(false);
+        pie.setVisible(true);
+    }
+
+    public void setBarChartButton1()
+    {
+        bar1.setVisible(true);
+        bar2.setVisible(false);
+        pie.setVisible(false);
+    }
+
+    public void setBarChartButton2()
+    {
+        bar1.setVisible(false);
+        bar2.setVisible(true);
+        pie.setVisible(false);
+    }
+
+    public void setCloseButton()
+    {
+        Platform.exit();
+    }
+
+    public void barChartDate()
+    {
+        int i = 0;
+        while(i < this.inventory.LocalDateCount().length)
+        {
+            XYChart.Series series1 = new XYChart.Series();
+            int[] tab = this.inventory.LocalDateCount();
+            series1.getData().add(new XYChart.Data(String.valueOf(this.inventory.getTabDate()[i]), tab[i]));
+            bar1.getData().add(series1);
+            i++;
+        }
+    }
+
+    public void barChartSellIn()
+    {
+        int i = 0;
+        while(i < this.inventory.getSellInOfAllItem().length)
+        {
+            XYChart.Series series1 = new XYChart.Series();
+            int[] tab = this.inventory.getSellInOfAllItem();
+            series1.getData().add(new XYChart.Data(String.valueOf(this.inventory.getTabSellIn()[i]), tab[i]));
+            bar2.getData().add(series1);
+            i++;
+        }
+    }
+
 
 }
 
