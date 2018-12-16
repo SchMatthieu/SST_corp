@@ -12,9 +12,16 @@ public class Aged_Brie extends Item {
     }
 
 
-    public Aged_Brie(String name, int sellIn, int quality) {
-        super(name,sellIn,quality);
+    public Aged_Brie(int id, String name, int sellIn, int quality) {
+        super(id, name,sellIn,quality);
 
+    }
+
+    public Aged_Brie(int id)
+    {this.name = "Aged Brie";
+        this.id = id;
+        this.quality=12;
+        this.sellIn=17;
     }
   
   public Aged_Brie(String name)

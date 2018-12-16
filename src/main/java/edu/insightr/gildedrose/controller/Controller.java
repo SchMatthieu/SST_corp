@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 
 import javax.swing.*;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -61,6 +60,8 @@ public class Controller  {
     public Button closeButton;
     @FXML
     BarChart bar2;
+    @FXML
+    TextField textfield_id;
 
 
     public Inventory inventory = new Inventory();
@@ -119,6 +120,7 @@ public class Controller  {
         {
             String name = (String) o;
             Item item = fetchItemByName(name);
+            textfield_id.setText(String.valueOf(item.getId()));
             textfield_quality.setText(String.valueOf(item.getQuality()));
             textfield_name.setText(item.getName());
             textfield_sellin.setText(String.valueOf(item.getSellIn()));
@@ -179,29 +181,35 @@ public class Controller  {
 
     public void deleteButton()
     {
-        int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
-        list_items.getItems().remove(selectedIdx);
-        Item[] tmp = new Item[this.inventory.getItems().length-1];
-        for(int i = 0; i < tmp.length; i ++)
-        {
-            if(i < selectedIdx)
-            {
-                tmp[i] = this.inventory.getItems()[i];
-            }
-            else if(i > selectedIdx)
-            {
-                tmp[i] = this.inventory.getItems()[i+1];
-            }
+        this.inventory.setItems(SoldButton());
+        initialize();
+    }
 
+    public Item[] SoldButton()
+    {
+        int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
+        Item deleteObject = fetchItemByName(list_items.getSelectionModel().getSelectedItem());
+        Item[] newList = new Item[inventory.getItems().length - 1];
+        for(int i = 0 ; i <newList.length; i++)
+        {
+            newList[i] = inventory.getItems()[i];
+
+            if( newList[i] == deleteObject)
+            {
+                for(int j = selectedIdx ; j < newList.length; j++) {
+                    newList[j] = inventory.getItems()[j + 1];
+                }
+                break;
+            }
         }
-        this.inventory.setItems(tmp);
-        pieChart();
+        return newList;
     }
 
     public void onNew(){
         btnSave.setDisable(false);
         btnCancel.setDisable(false);
 
+        textfield_id.setText(null);
         cmbType.setValue(null);
         textfield_name.setText(null);
         textfield_sellin.setText(null);
@@ -210,40 +218,84 @@ public class Controller  {
 
     public void onSave(){
         Item tmp = null;
-
-        LocalDate today = LocalDate.now();
-        String time = String.valueOf(today);
+        boolean exist = false;
 
         if(cmbType.getValue() == "Aged_Brie")
         {
-            tmp = new Aged_Brie(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Aged_Brie(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            if(verifItem(tmp))
+            {
+                exist = true;
+            }
         }
-        else if(cmbType.getValue() =="Backstage_passes_to_a_TAFKAL80ETC_concert")
+        if(cmbType.getValue() == "Backstage_passes_to_a_TAFKAL80ETC_concert")
         {
-            tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            if(verifItem(tmp))
+            {
+                exist = true;
+            }
         }
-        else if(cmbType.getValue() == "Conjured_Mana_Cake")
+        if(cmbType.getValue() == "Conjured_Mana_Cake")
         {
-            tmp = new Conjured_Mana_Cake(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Conjured_Mana_Cake(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            if(verifItem(tmp))
+            {
+                exist = true;
+            }
         }
-        else if(cmbType.getValue() == "Dexterity_Vest")
+        if(cmbType.getValue() == "Dexterity_Vest")
         {
-            tmp = new Dexterity_Vest(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Dexterity_Vest(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            if(verifItem(tmp))
+            {
+                exist = true;
+            }
         }
-        else if(cmbType.getValue() == "Elixir_of_the_Mongoose")
+        if(cmbType.getValue() == "Elixir_of_the_Mongoose")
         {
-            tmp = new Elixir_of_the_Mongoose(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Elixir_of_the_Mongoose(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            if(verifItem(tmp))
+            {
+                exist = true;
+            }
         }
-        else if(cmbType.getValue() == "Sulfuras_Hand_of_Ragnaros")
+        if(cmbType.getValue() == "Sulfuras_Hand_of_Ragnaros")
         {
-            tmp = new Sulfuras_Hand_of_Ragnaros(textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            tmp = new Sulfuras_Hand_of_Ragnaros(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
+            if(verifItem(tmp))
+            {
+                exist = true;
+            }
         }
 
-        onCancel();
-
-        inventory.setItems(addList(tmp));
+        if(!exist)
+        {
+            onCancel();
+            inventory.setItems(addList(tmp));
+            //historique.boughtItem(tmp);
+            initialize();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "The entered ID already corresponds to another item...");
+        }
 
         initialize();
+    }
+
+    public boolean verifItem(Item item){
+        boolean found = false;
+        for(int i = 0; i < inventory.getItems().length; i++)
+        {
+            if(inventory.getItems()[i].getId() == item.getId())
+            {
+                found = true;
+                break;
+            }
+        }
+
+        return found;
     }
 
     public void onCancel(){

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public abstract class Item {
 
+    protected int id;
     protected String name;
     protected int sellIn;
 
@@ -13,21 +14,34 @@ public abstract class Item {
 
     public Item() {
         super();
+        this.id = 0;
         this.name = "Object";
         this.sellIn = 25;
         this.quality = 17;
         this.date = LocalDate.of(2018, 10, 1);
     }
 
-    public Item(String name, int sellIn, int quality) {
+    public Item(int id) {
         super();
+        this.id = id;
+        this.name = "Object";
+        this.sellIn = 25;
+        this.quality = 17;
+        this.date = LocalDate.of(2018, 10, 1);
+    }
+
+    public Item(int id, String name, int sellIn, int quality) {
+        super();
+        this.id = id;
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
         this.date = LocalDate.now();
     }
 
-
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

@@ -45,13 +45,13 @@ public class Inventory {
     public Inventory() {
         super();
         items = new Item[]{
-                new Aged_Brie(),
-                new Backstage_passes_to_a_TAFKAL80ETC_concert(),
-                new Conjured_Mana_Cake(),
-                new Dexterity_Vest(),
-                new Elixir_of_the_Mongoose(),
-                new Sulfuras_Hand_of_Ragnaros(),
-                new Aged_Brie("new Aged Brie", 14, 50)
+                new Aged_Brie(1),
+                new Backstage_passes_to_a_TAFKAL80ETC_concert(2),
+                new Conjured_Mana_Cake(3),
+                new Dexterity_Vest(4),
+                new Elixir_of_the_Mongoose(5),
+                new Sulfuras_Hand_of_Ragnaros(6),
+                new Aged_Brie(7,"new Aged Brie", 14, 50)
         };
         this.tabProportion = new int[6];
         this.tabSellIn = new int[0];

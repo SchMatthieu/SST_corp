@@ -3,8 +3,13 @@ package edu.insightr.gildedrose;
 
 import edu.insightr.gildedrose.model.*;
 import org.junit.Test;
+
+import java.time.LocalDate;
+import java.util.LinkedList;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
+
 
 public class CucumberTest {
 
@@ -80,6 +85,19 @@ public class CucumberTest {
         }
         inventory.setItems(tmp);
         assertThat(inventory.getItems().length, is(6));
+    }
+
+    @Test
+    public void truthWorthyPieDate()
+    {
+        Inventory inv = new Inventory();
+        Item[] item = inv.getItems();
+        LinkedList<LocalDate> date = inv.presenceDate();
+        inv.proportion(inv.getItems());
+        int prop = inv.getProportion()[2];
+        LocalDate Creation = date.get(0);
+        assertThat(prop, is(1));
+        assertThat(Creation,is(LocalDate.of(2018,10,01)));
     }
 
 

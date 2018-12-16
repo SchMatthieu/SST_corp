@@ -15,89 +15,79 @@ import java.util.List;
 
 public class JSON {
 
-    public static void WriteItem(Item i){
+    public void WriteItems(Item[] items){
 
-        JSONObject tmp = new JSONObject();
-        JSONObject listAttributes = new JSONObject();
+        JSONArray listItems = new JSONArray();
 
-        listAttributes.put("name", i.getName());
-        listAttributes.put("sellIn", i.getSellIn());
-        listAttributes.put("quality", i.getQuality());
-        tmp.put("",listAttributes);
+        for(int i = 0; i < items.length; i++)
+        {
+            JSONObject listAttributes = new JSONObject();
 
-        /*tmp.put("name", i.getName());
-        tmp.put("sellIn", i.getSellIn());
-        tmp.put("quality", i.getQuality());
-        */
+            String[] tmp = String.valueOf(items[i].getClass()).split("\\.");
+
+            listAttributes.put("ID", items[i].getId());
+            listAttributes.put("type", tmp[tmp.length-1]);
+            listAttributes.put("name", items[i].getName());
+            listAttributes.put("sellIn", items[i].getSellIn());
+            listAttributes.put("quality", items[i].getQuality());
+
+            listItems.add(listAttributes);
+        }
 
         try (FileWriter file = new FileWriter("test.json")) {
 
-            file.write(tmp.toJSONString());
-            file.flush();
+            file.write(listItems.toJSONString());
+            System.out.println("Successfully Copied JSON Object to File...");
+            System.out.println("\nJSON Object: " + listItems);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // System.out.print(tmp);
     }
-
-
     public static void ReadJson(String nameFile, Item[] ancienneListeDesItems, Inventory inventory){
-        List<Item> item = new ArrayList<Item>();
+        List<Item> item = new ArrayList<>();
         JSONParser parser = new JSONParser();
 
         try {
 
             JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(nameFile));
             for(Object o : jsonArray) {
-
-                LocalDate today = LocalDate.now();
-                String time = String.valueOf(today);
-                String[] temp = time.split("-");
-                int year = Integer.valueOf(temp[0]);
-                int month = Integer.valueOf(temp[2]);
-                int day = Integer.valueOf(temp[1]);
-
                 JSONObject jsonObject = (JSONObject) o;
-                //   System.out.println(jsonObject);
 
                 String name = (String) jsonObject.get("name");
-                // System.out.println(name);
 
                 String type = (String) jsonObject.get("type");
-                //System.out.println(name);
+
+                int id = (int) (long) jsonObject.get("ID");
 
                 int sellIn = (int) (long) jsonObject.get("sellIn");
-                //System.out.println(sellIn);
 
                 int quality = (int) (long) jsonObject.get("quality");
-                //System.out.println(quality);
-
                 if (type.compareTo("Aged_Brie") == 0) {
-                    Aged_Brie NewAgedBrie = new Aged_Brie(name, sellIn, quality);
+                    Aged_Brie NewAgedBrie = new Aged_Brie(id, name, sellIn, quality);
                     item.add(NewAgedBrie);
                 }
                 else  if (type.compareTo("Backstage_passes_to_a_TAFKAL80ETC_concert") == 0) {
-                    Backstage_passes_to_a_TAFKAL80ETC_concert NewBackstage = new Backstage_passes_to_a_TAFKAL80ETC_concert(type, sellIn, quality);
+                    Backstage_passes_to_a_TAFKAL80ETC_concert NewBackstage = new Backstage_passes_to_a_TAFKAL80ETC_concert(id, name, sellIn, quality);
                     item.add(NewBackstage);
                 }
                 else  if (type.compareTo("Conjured_Mana_Cake") == 0) {
 
-                    Conjured_Mana_Cake NewConjured = new Conjured_Mana_Cake(name, sellIn, quality);
+                    Conjured_Mana_Cake NewConjured = new Conjured_Mana_Cake(id, name, sellIn, quality);
                     item.add(NewConjured);
                 }
                 else if (type.compareTo("Dexterity_Vest") == 0) {
 
-                    Dexterity_Vest NewDexterity = new Dexterity_Vest(name, sellIn, quality);
+                    Dexterity_Vest NewDexterity = new Dexterity_Vest(id, name, sellIn, quality);
                     item.add(NewDexterity);
                 }
                 else  if (type.compareTo("Elixir_of_the_Mongoose") == 0) {
 
-                    Elixir_of_the_Mongoose NewElixir = new Elixir_of_the_Mongoose(name, sellIn, quality);
+                    Elixir_of_the_Mongoose NewElixir = new Elixir_of_the_Mongoose(id, name, sellIn, quality);
                     item.add(NewElixir);
                 }
                 else  if (type.compareTo("Sulfuras_Hand_of_Ragnaros") == 0) {
-                    Sulfuras_Hand_of_Ragnaros NewSulfura = new Sulfuras_Hand_of_Ragnaros(name, sellIn, quality);
+                    Sulfuras_Hand_of_Ragnaros NewSulfura = new Sulfuras_Hand_of_Ragnaros(id, name, sellIn, quality);
                     item.add(NewSulfura);
                 }
 
@@ -113,14 +103,14 @@ public class JSON {
         }
 
         Item[] tmp = new Item[ancienneListeDesItems.length + item.size()];
-            for(int i = 0; i < ancienneListeDesItems.length; i++)
-            {
-                tmp[i] = ancienneListeDesItems[i];
-            }
-            for(int i = 0; i < item.size(); i++)
-            {
-                tmp[i+ancienneListeDesItems.length] = item.get(i);
-            }
+        for(int i = 0; i < ancienneListeDesItems.length; i++)
+        {
+            tmp[i] = ancienneListeDesItems[i];
+        }
+        for(int i = 0; i < item.size(); i++)
+        {
+            tmp[i+ancienneListeDesItems.length] = item.get(i);
+        }
 
         inventory.setItems(tmp);
 

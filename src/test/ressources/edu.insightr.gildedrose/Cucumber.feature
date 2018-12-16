@@ -39,4 +39,11 @@ Feature: interface
     When I push the button delete
     Then I have one item less in my inventory
 
-
+ #the proportion of the bar chart are the same as the proprtion of date as each item of our inventory
+  Scenario: the truthworthyDate of the pie chart
+    Given I have a new inventory
+    Then the pie chart is display
+    And the LocalDate is create
+    When I add new items
+    Then  the proportions of the pie chart change
+    And the LocalDate is stock
