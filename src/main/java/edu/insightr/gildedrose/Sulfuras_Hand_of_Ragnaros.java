@@ -30,7 +30,6 @@ public class Sulfuras_Hand_of_Ragnaros extends Item{
 
     public void updateQuality(){
         super.updateQuality();
-        
     }
     //Its quality never change
 

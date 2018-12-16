@@ -24,7 +24,6 @@ public abstract class Item {
         this.quality = quality;
     }
 
-
     public int getId() {
         return id;
     }

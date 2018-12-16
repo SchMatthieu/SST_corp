@@ -14,7 +14,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
-
         URL url = new File("src/main/java/sample/sample.fxml").toURL();
         Parent root = FXMLLoader.load(url);
 

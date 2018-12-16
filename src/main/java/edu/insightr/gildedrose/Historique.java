@@ -52,7 +52,6 @@ public class Historique {
             historiqueVente.get(historiqueVente.size() - 1).add(item);
         }
     }
-
     public void boughtItem(Item item){
         if(historiqueAchat.isEmpty())
         {

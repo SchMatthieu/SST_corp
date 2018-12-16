@@ -31,6 +31,5 @@ public class Elixir_of_the_Mongoose extends Item{
                 this.quality = this.quality - 1;
             }
         }
-        
     }
 }

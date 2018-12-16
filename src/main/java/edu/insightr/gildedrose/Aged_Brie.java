@@ -29,7 +29,6 @@ public class Aged_Brie extends Item {
         if (this.quality < 50) {
             this.quality = this.quality +1;
         }
-
     }
 
 }

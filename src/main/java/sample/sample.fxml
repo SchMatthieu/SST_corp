@@ -18,7 +18,6 @@
 
 <GridPane alignment="center" hgap="10" prefHeight="509.0" prefWidth="839.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
 
-
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />

@@ -32,7 +32,6 @@ public class Dexterity_Vest extends Item{
                 this.quality = this.quality - 2;
             }
         }
-       
     }
 
 }

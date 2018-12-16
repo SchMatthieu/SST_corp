@@ -211,7 +211,7 @@ public class Controller {
         if(cmbType.getValue() == "Aged_Brie")
         {
             tmp = new Aged_Brie(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
-            if(verifItem(tmp) == true)
+            if(verifItem(tmp))
             {
                 exist = true;
             }
@@ -219,7 +219,7 @@ public class Controller {
         if(cmbType.getValue() == "Backstage_passes_to_a_TAFKAL80ETC_concert")
         {
             tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
-            if(verifItem(tmp) == true)
+            if(verifItem(tmp))
             {
                 exist = true;
             }
@@ -227,7 +227,7 @@ public class Controller {
         if(cmbType.getValue() == "Conjured_Mana_Cake")
         {
             tmp = new Conjured_Mana_Cake(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
-            if(verifItem(tmp) == true)
+            if(verifItem(tmp))
             {
                 exist = true;
             }
@@ -235,7 +235,7 @@ public class Controller {
         if(cmbType.getValue() == "Dexterity_Vest")
         {
             tmp = new Dexterity_Vest(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
-            if(verifItem(tmp) == true)
+            if(verifItem(tmp))
             {
                 exist = true;
             }
@@ -243,7 +243,7 @@ public class Controller {
         if(cmbType.getValue() == "Elixir_of_the_Mongoose")
         {
             tmp = new Elixir_of_the_Mongoose(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
-            if(verifItem(tmp) == true)
+            if(verifItem(tmp))
             {
                 exist = true;
             }
@@ -251,13 +251,13 @@ public class Controller {
         if(cmbType.getValue() == "Sulfuras_Hand_of_Ragnaros")
         {
             tmp = new Sulfuras_Hand_of_Ragnaros(Integer.valueOf(textfield_id.getText()), textfield_name.getText(), Integer.valueOf(textfield_sellin.getText()), Integer.valueOf(textfield_quality.getText()));
-            if(verifItem(tmp) == true)
+            if(verifItem(tmp))
             {
                 exist = true;
             }
         }
 
-        if(exist == false)
+        if(!exist)
         {
             onCancel();
             inventory.setItems(addList(tmp));

@@ -34,6 +34,5 @@ public class Conjured_Mana_Cake extends Item{
                 this.quality  = this.quality  - 2;
             }
         }
-        
     }
 }

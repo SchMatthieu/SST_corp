@@ -14,7 +14,7 @@ import java.util.List;
 
 public class JsonClass {
 
-    public static void WriteItems(Item[] items){
+    public void WriteItems(Item[] items){
 
         JSONArray listItems = new JSONArray();
 
@@ -43,7 +43,7 @@ public class JsonClass {
             e.printStackTrace();
         }
     }
-    public static void ReadJson(String nameFile, Item[] ancienneListeDesItems, Inventory inventory){
+    public void ReadJson(String nameFile, Item[] ancienneListeDesItems, Inventory inventory){
         List<Item> item = new ArrayList<>();
         JSONParser parser = new JSONParser();
 
