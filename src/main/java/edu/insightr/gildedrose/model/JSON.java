@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -44,6 +45,7 @@ public class JSON {
             e.printStackTrace();
         }
     }
+
     public static void ReadJson(String nameFile, Item[] ancienneListeDesItems, Inventory inventory){
         List<Item> item = new ArrayList<>();
         JSONParser parser = new JSONParser();
@@ -59,39 +61,39 @@ public class JSON {
                 String type = (String) jsonObject.get("type");
 
                 int id = (int) (long) jsonObject.get("ID");
-
                 int sellIn = (int) (long) jsonObject.get("sellIn");
-
                 int quality = (int) (long) jsonObject.get("quality");
+
+                Item tmp = null;
+                boolean exist = false;
+
                 if (type.compareTo("Aged_Brie") == 0) {
-                    Aged_Brie NewAgedBrie = new Aged_Brie(id, name, sellIn, quality);
-                    item.add(NewAgedBrie);
+                    tmp = new Aged_Brie(id, name, sellIn, quality);
                 }
                 else  if (type.compareTo("Backstage_passes_to_a_TAFKAL80ETC_concert") == 0) {
-                    Backstage_passes_to_a_TAFKAL80ETC_concert NewBackstage = new Backstage_passes_to_a_TAFKAL80ETC_concert(id, name, sellIn, quality);
-                    item.add(NewBackstage);
+                    tmp = new Backstage_passes_to_a_TAFKAL80ETC_concert(id, name, sellIn, quality);
                 }
                 else  if (type.compareTo("Conjured_Mana_Cake") == 0) {
-
-                    Conjured_Mana_Cake NewConjured = new Conjured_Mana_Cake(id, name, sellIn, quality);
-                    item.add(NewConjured);
+                    tmp = new Conjured_Mana_Cake(id, name, sellIn, quality);
                 }
                 else if (type.compareTo("Dexterity_Vest") == 0) {
-
-                    Dexterity_Vest NewDexterity = new Dexterity_Vest(id, name, sellIn, quality);
-                    item.add(NewDexterity);
+                    tmp = new Dexterity_Vest(id, name, sellIn, quality);
                 }
                 else  if (type.compareTo("Elixir_of_the_Mongoose") == 0) {
 
-                    Elixir_of_the_Mongoose NewElixir = new Elixir_of_the_Mongoose(id, name, sellIn, quality);
-                    item.add(NewElixir);
+                    tmp = new Elixir_of_the_Mongoose(id, name, sellIn, quality);
                 }
                 else  if (type.compareTo("Sulfuras_Hand_of_Ragnaros") == 0) {
-                    Sulfuras_Hand_of_Ragnaros NewSulfura = new Sulfuras_Hand_of_Ragnaros(id, name, sellIn, quality);
-                    item.add(NewSulfura);
+                    tmp = new Sulfuras_Hand_of_Ragnaros(id, name, sellIn, quality);
                 }
-
-
+                if(verifItem(tmp, inventory))
+                {
+                    exist = true;
+                }
+                if(!exist)
+                {
+                    item.add(tmp);
+                }
             }
 
         } catch (FileNotFoundException e) {
@@ -116,6 +118,15 @@ public class JSON {
 
     }
 
-
+    static boolean verifItem(Item item, Inventory inventory) {
+        boolean found = false;
+        for (int i = 0; i < inventory.getItems().length; i++) {
+            if (inventory.getItems()[i].getId() == item.getId()) {
+                found = true;
+                break;
+            }
+        }
+        return found;
+    }
 
 }

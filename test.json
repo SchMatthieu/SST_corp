@@ -1,15 +1,1 @@
-[
-  {
-    "name":"Sulfuras Hand of Ragnaros",
-    "type":"Sulfuras_Hand_of_Ragnaros",
-    "sellIn" : 0,
-    "quality" : 80
-
-  },
-  {
-    "name":"Aged Brie",
-    "type":"Aged_Brie",
-    "sellIn":12,
-    "quality":17
-  }
-]
+[{"name":"Aged Brie","sellIn":10,"ID":1,"type":"Aged_Brie","quality":17},{"name":"Backstage passes to a TAFKAL80ETC concert","sellIn":17,"ID":2,"type":"Backstage_passes_to_a_TAFKAL80ETC_concert","quality":12},{"name":"Conjured Mana Cake","sellIn":19,"ID":3,"type":"Conjured_Mana_Cake","quality":7},{"name":"+5 Dexterity Vest","sellIn":0,"ID":4,"type":"Dexterity_Vest","quality":25},{"name":"Elixir of the Mongoose","sellIn":10,"ID":5,"type":"Elixir_of_the_Mongoose","quality":0},{"name":"Sulfuras, Hand of Ragnaros","sellIn":20,"ID":6,"type":"Sulfuras_Hand_of_Ragnaros","quality":80},{"name":"new Aged Brie","sellIn":14,"ID":8,"type":"Aged_Brie","quality":50}]
