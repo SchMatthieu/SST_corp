@@ -75,7 +75,8 @@ public class Controller {
         //JsonClass.WriteItems(inventory.getItems());
 
         pieChart();
-        lineChartBoughtItems();
+        //lineChartBoughtItems();
+        lineChartSoldItems();
     }
     private Item fetchItemByName(String name) {
         Item item = null;
@@ -166,27 +167,30 @@ public class Controller {
     }
 
     public void deleteButton() {
-        int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
-        list_items.getItems().remove(selectedIdx);
-        Item[] tmp = new Item[this.inventory.getItems().length-1];
-        for(int i = 0; i < tmp.length; i ++)
-        {
-            if(i < selectedIdx)
-            {
-                tmp[i] = this.inventory.getItems()[i];
-            }
-            else if(i > selectedIdx)
-            {
-                tmp[i] = this.inventory.getItems()[i+1];
-            }
+        this.inventory.setItems(SoldButton());
+        initialize();
+    }
 
+    public Item[] SoldButton() {
+        int selectedIdx = list_items.getSelectionModel().getSelectedIndex();
+        Item deleteObject = fetchItemByName(list_items.getSelectionModel().getSelectedItem());
+        Item[] newList = new Item[inventory.getItems().length - 1];
+        for(int i = 0 ; i <newList.length; i++)
+        {
+            newList[i] = inventory.getItems()[i];
+
+            if( newList[i] == deleteObject)
+            {
+                for(int j = selectedIdx ; j < newList.length; j++) {
+                    newList[j] = inventory.getItems()[j + 1];
+                }
+                break;
+            }
         }
-        this.inventory.setItems(tmp);
-        /*
-        fetchItems();
-        pieChart();
-        */
-        pieChart();
+
+        historique.soldItem(deleteObject);
+
+        return newList;
     }
 
     public void onNew(ActionEvent e){
@@ -363,6 +367,73 @@ public class Controller {
 
     }
 
+    public void lineChartSoldItems(){
+        lineChart.getData().clear();
+
+        lineChart.setTitle("Sales History");
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Days");
+        yAxis.setLabel("Number of items bought");
+
+        XYChart.Series seriesAgedBrie = new XYChart.Series();
+        seriesAgedBrie.setName("Aged Brie");
+        int i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesAgedBrie.getData().add(new XYChart.Data("Day "+ i, nbItemsSold(soldItems, "Aged_Brie")));
+            i++;
+        }
+
+        XYChart.Series seriesBackstage = new XYChart.Series();
+        seriesBackstage.setName("Backstage passes");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesBackstage.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Backstage_passes_to_a_TAFKAL80ETC_concert")));
+            i++;
+        }
+
+        XYChart.Series seriesConjured = new XYChart.Series();
+        seriesConjured.setName("Conjured Mana Cake");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesConjured.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Conjured_Mana_Cake")));
+            i++;
+        }
+
+        XYChart.Series seriesDexterity = new XYChart.Series();
+        seriesDexterity.setName("Dexterity Vest");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesDexterity.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Dexterity_Vest")));
+            i++;
+        }
+
+        XYChart.Series seriesElixir = new XYChart.Series();
+        seriesElixir.setName("Elixir of the Mongoose");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesElixir.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Elixir_of_the_Mongoose")));
+            i++;
+        }
+
+        XYChart.Series seriesSulfuras = new XYChart.Series();
+        seriesSulfuras.setName("Sulfuras");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesSulfuras.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Sulfuras_Hand_of_Ragnaros")));
+            i++;
+        }
+
+        lineChart.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesDexterity, seriesElixir, seriesSulfuras);
+
+    }
+
     public int nbItemsSold(List<Item> listItemsSold, String typeItem){
         int nb = 0;
         for(Item item : listItemsSold)
@@ -387,7 +458,7 @@ public class Controller {
                 nb++;
             }
         }
-        System.out.println(nb);
+
         return nb;
     }
 }
