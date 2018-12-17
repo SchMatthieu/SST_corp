@@ -89,6 +89,8 @@ public class Controller  {
         list_items.getSelectionModel().selectedItemProperty().addListener(e->
                 displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
 
+        lineChartBoughtItems();
+        lineChartSoldItems();
         pieChart();
         barChartSellIn();
         barChartDate();
@@ -97,8 +99,6 @@ public class Controller  {
         pie.setVisible(true);
         lineChartBuy.setVisible(false);
         lineChartSell.setVisible(false);
-        lineChartBoughtItems();
-        lineChartSoldItems();
     }
 
     private Item fetchItemByName(String name)
@@ -184,13 +184,13 @@ public class Controller  {
             String[] test = String.valueOf(chooser.getSelectedFile()).split("\\\\");
             String path = test[test.length-1];
             System.out.println(path);
-            JSON.ReadJson(path, this.inventory.getItems(), this.inventory);
+            JSON.ReadJson(path, this.inventory.getItems(), this.inventory, historique);
         } else {
             System.out.println("No Selection ");
         }
         fetchItems();
         pieChart();
-
+        initialize();
     }
 
     public void deleteButton()
@@ -226,7 +226,7 @@ public class Controller  {
 
         pieChartButton.setDisable(true);
         lineChartButtonBuy.setDisable(true);
-        lineChartButtonSell.setDisable(false);
+        lineChartButtonSell.setDisable(true);
         barChartButton1.setDisable(true);
         barChartButton2.setDisable(true);
         addButton.setDisable(true);

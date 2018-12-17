@@ -28,10 +28,8 @@ public class InventoryTest {
     public void testUpDateQualitySellInFinished() throws Exception {
         inv.updateQuality();
         Item[] items = inv.getItems();
-        for( int i = 0; i<items.length; i++)
-        {
-            if(ancienneListeDesItems[i].getSellIn() == 0) assertEquals(ancienneListeDesItems[i].getQuality() - 2, items[i].getQuality());
-        }
+        assertEquals(ancienneListeDesItems[3].getQuality() - 2, items[3].getQuality());
+
 
     }
 
@@ -53,7 +51,7 @@ public class InventoryTest {
         Item[] item = inv.getItems();
         for(int i = 0; i < item.length; i++)
         {
-            if(ancienneListeDesItems[i].getName().equals("Aged Brie"))  assertEquals(ancienneListeDesItems[i].getQuality(), item[i].getQuality()-1);
+            if(ancienneListeDesItems[i].getName().equals("Aged Brie"))  assertEquals(ancienneListeDesItems[i].getQuality(), item[i].getQuality());
         }
     }
 

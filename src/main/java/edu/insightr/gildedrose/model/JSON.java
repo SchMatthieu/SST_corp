@@ -46,7 +46,7 @@ public class JSON {
         }
     }
 
-    public static void ReadJson(String nameFile, Item[] ancienneListeDesItems, Inventory inventory){
+    public static void ReadJson(String nameFile, Item[] ancienneListeDesItems, Inventory inventory, Historique histo){
         List<Item> item = new ArrayList<>();
         JSONParser parser = new JSONParser();
 
@@ -96,6 +96,7 @@ public class JSON {
                 }
             }
 
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -115,6 +116,11 @@ public class JSON {
         }
 
         inventory.setItems(tmp);
+
+        for(Item i:item)
+        {
+            histo.boughtItem(i);
+        }
 
     }
 

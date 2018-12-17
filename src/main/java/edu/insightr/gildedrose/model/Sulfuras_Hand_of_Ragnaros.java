@@ -20,7 +20,7 @@ public class Sulfuras_Hand_of_Ragnaros extends Item {
     {
         this.id = id;
         this.name = "Sulfuras, Hand of Ragnaros";
-        this.quality=80;
+        this.quality=50;
         this.sellIn=20;
     }
   

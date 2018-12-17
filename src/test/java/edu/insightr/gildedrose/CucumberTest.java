@@ -17,10 +17,10 @@ public class CucumberTest {
     public void addJSONFile()
     {
         Inventory inv = new Inventory();
-
+        Historique histo = new Historique();
         assertThat(inv.getItems().length, is(7));
-        JSON.ReadJson("test.json", inv.getItems(), inv);
-        assertThat(inv.getItems().length, is(9));
+        JSON.ReadJson("test.json", inv.getItems(), inv, histo);
+        assertThat(inv.getItems().length, is(8));
     }
 
     @Test

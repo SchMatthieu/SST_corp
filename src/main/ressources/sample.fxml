@@ -90,7 +90,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <Button fx:id="lineChartButtonBuy" layoutX="242.0" layoutY="19.0" mnemonicParsing="false" onAction="#setLineChartButtonBuy" prefHeight="26.0" prefWidth="82.0" text="Line chart buy" />
+            <Button fx:id="lineChartButtonBuy" layoutX="242.0" layoutY="19.0" mnemonicParsing="false" onAction="#setLineChartButtonBuy" prefHeight="26.0" prefWidth="93.0" text="Line chart buy" />
             <LineChart fx:id="lineChartBuy" layoutX="451.0" layoutY="31.0" prefHeight="479.0" prefWidth="500.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
@@ -99,7 +99,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <Button fx:id="lineChartButtonSell" layoutX="341.0" layoutY="19.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Line chart sell" onAction="#setLineChartButtonSell" />
+            <Button fx:id="lineChartButtonSell" layoutX="341.0" layoutY="19.0" mnemonicParsing="false" onAction="#setLineChartButtonSell" prefHeight="26.0" prefWidth="94.0" text="Line chart sell" />
          </children>
       </AnchorPane>
 
