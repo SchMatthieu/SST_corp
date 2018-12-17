@@ -62,9 +62,18 @@ public class Controller  {
     BarChart bar2;
     @FXML
     TextField textfield_id;
+    @FXML
+    LineChart lineChartSell;
+    @FXML
+    LineChart lineChartBuy;
+    @FXML
+    Button lineChartButtonSell;
+    @FXML
+    Button lineChartButtonBuy;
 
 
     public Inventory inventory = new Inventory();
+    public Historique historique = new Historique();
 
     public void initialize() {
         List<String> tValues = new ArrayList<String>();
@@ -86,6 +95,10 @@ public class Controller  {
         bar1.setVisible(false);
         bar2.setVisible(false);
         pie.setVisible(true);
+        lineChartBuy.setVisible(false);
+        lineChartSell.setVisible(false);
+        lineChartBoughtItems();
+        lineChartSoldItems();
     }
 
     private Item fetchItemByName(String name)
@@ -138,6 +151,7 @@ public class Controller  {
     {
         this.inventory.updateQuality();
         displayItemsDetails(inventory);
+        historique.addDay();
         initialize();
     }
 
@@ -202,12 +216,20 @@ public class Controller  {
                 break;
             }
         }
+        historique.soldItem(deleteObject);
         return newList;
     }
 
     public void onNew(){
         btnSave.setDisable(false);
         btnCancel.setDisable(false);
+
+        pieChartButton.setDisable(true);
+        lineChartButtonBuy.setDisable(true);
+        lineChartButtonSell.setDisable(false);
+        barChartButton1.setDisable(true);
+        barChartButton2.setDisable(true);
+        addButton.setDisable(true);
 
         textfield_id.setText(null);
         cmbType.setValue(null);
@@ -273,7 +295,7 @@ public class Controller  {
         {
             onCancel();
             inventory.setItems(addList(tmp));
-            //historique.boughtItem(tmp);
+            historique.boughtItem(tmp);
             initialize();
         }
         else
@@ -281,7 +303,12 @@ public class Controller  {
             JOptionPane.showMessageDialog(null, "The entered ID already corresponds to another item...");
         }
 
-        initialize();
+        pieChartButton.setDisable(false);
+        lineChartButtonBuy.setDisable(false);
+        lineChartButtonSell.setDisable(false);
+        barChartButton1.setDisable(false);
+        barChartButton2.setDisable(false);
+        addButton.setDisable(false);
     }
 
     public boolean verifItem(Item item){
@@ -301,6 +328,13 @@ public class Controller  {
     public void onCancel(){
         btnSave.setDisable(true);
         btnCancel.setDisable(true);
+
+        pieChartButton.setDisable(false);
+        lineChartButtonSell.setDisable(false);
+        lineChartButtonBuy.setDisable(false);
+        barChartButton1.setDisable(false);
+        barChartButton2.setDisable(false);
+        addButton.setDisable(false);
     }
 
     public Item[] addList(Item item){
@@ -320,6 +354,8 @@ public class Controller  {
         bar1.setVisible(false);
         bar2.setVisible(false);
         pie.setVisible(true);
+        lineChartBuy.setVisible(false);
+        lineChartSell.setVisible(false);
     }
 
     public void setBarChartButton1()
@@ -327,6 +363,8 @@ public class Controller  {
         bar1.setVisible(true);
         bar2.setVisible(false);
         pie.setVisible(false);
+        lineChartBuy.setVisible(false);
+        lineChartSell.setVisible(false);
     }
 
     public void setBarChartButton2()
@@ -334,6 +372,26 @@ public class Controller  {
         bar1.setVisible(false);
         bar2.setVisible(true);
         pie.setVisible(false);
+        lineChartBuy.setVisible(false);
+        lineChartSell.setVisible(false);
+    }
+
+    public void setLineChartButtonBuy()
+    {
+        bar1.setVisible(false);
+        bar2.setVisible(false);
+        pie.setVisible(false);
+        lineChartBuy.setVisible(true);
+        lineChartSell.setVisible(false);
+    }
+
+    public void setLineChartButtonSell()
+    {
+        bar1.setVisible(false);
+        bar2.setVisible(false);
+        pie.setVisible(false);
+        lineChartBuy.setVisible(false);
+        lineChartSell.setVisible(true);
     }
 
     public void setCloseButton()
@@ -367,6 +425,168 @@ public class Controller  {
             bar2.getData().add(series1);
             i++;
         }
+    }
+
+    public void lineChartBoughtItems(){
+        lineChartBuy.getData().clear();
+
+        lineChartBuy.setTitle("Buy History");
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Days");
+        yAxis.setLabel("Number of items bought");
+
+        XYChart.Series seriesAgedBrie = new XYChart.Series();
+        seriesAgedBrie.setName("Aged Brie");
+        int i = 0;
+        for(List<Item> boughtItems : historique.getHistoriqueAchat())
+        {
+            seriesAgedBrie.getData().add(new XYChart.Data("Day "+ i, nbItemsBought(boughtItems, "Aged_Brie")));
+            i++;
+        }
+
+        XYChart.Series seriesBackstage = new XYChart.Series();
+        seriesBackstage.setName("Backstage passes");
+        i = 0;
+        for(List<Item> boughtItems : historique.getHistoriqueAchat())
+        {
+            seriesBackstage.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Backstage_passes_to_a_TAFKAL80ETC_concert")));
+            i++;
+        }
+
+        XYChart.Series seriesConjured = new XYChart.Series();
+        seriesConjured.setName("Conjured Mana Cake");
+        i = 0;
+        for(List<Item> boughtItems : historique.getHistoriqueAchat())
+        {
+            seriesConjured.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Conjured_Mana_Cake")));
+            i++;
+        }
+
+        XYChart.Series seriesDexterity = new XYChart.Series();
+        seriesDexterity.setName("Dexterity Vest");
+        i = 0;
+        for(List<Item> boughtItems : historique.getHistoriqueAchat())
+        {
+            seriesDexterity.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Dexterity_Vest")));
+            i++;
+        }
+
+        XYChart.Series seriesElixir = new XYChart.Series();
+        seriesElixir.setName("Elixir of the Mongoose");
+        i = 0;
+        for(List<Item> boughtItems : historique.getHistoriqueAchat())
+        {
+            seriesElixir.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Elixir_of_the_Mongoose")));
+            i++;
+        }
+
+        XYChart.Series seriesSulfuras = new XYChart.Series();
+        seriesSulfuras.setName("Sulfuras");
+        i = 0;
+        for(List<Item> boughtItems : historique.getHistoriqueAchat())
+        {
+            seriesSulfuras.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Sulfuras_Hand_of_Ragnaros")));
+            i++;
+        }
+
+        lineChartBuy.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesDexterity, seriesElixir, seriesSulfuras);
+
+    }
+
+    public void lineChartSoldItems(){
+        lineChartSell.getData().clear();
+
+        lineChartSell.setTitle("Sales History");
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Days");
+        yAxis.setLabel("Number of items bought");
+
+        XYChart.Series seriesAgedBrie = new XYChart.Series();
+        seriesAgedBrie.setName("Aged Brie");
+        int i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesAgedBrie.getData().add(new XYChart.Data("Day "+ i, nbItemsSold(soldItems, "Aged_Brie")));
+            i++;
+        }
+
+        XYChart.Series seriesBackstage = new XYChart.Series();
+        seriesBackstage.setName("Backstage passes");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesBackstage.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Backstage_passes_to_a_TAFKAL80ETC_concert")));
+            i++;
+        }
+
+        XYChart.Series seriesConjured = new XYChart.Series();
+        seriesConjured.setName("Conjured Mana Cake");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesConjured.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Conjured_Mana_Cake")));
+            i++;
+        }
+
+        XYChart.Series seriesDexterity = new XYChart.Series();
+        seriesDexterity.setName("Dexterity Vest");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesDexterity.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Dexterity_Vest")));
+            i++;
+        }
+
+        XYChart.Series seriesElixir = new XYChart.Series();
+        seriesElixir.setName("Elixir of the Mongoose");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesElixir.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Elixir_of_the_Mongoose")));
+            i++;
+        }
+
+        XYChart.Series seriesSulfuras = new XYChart.Series();
+        seriesSulfuras.setName("Sulfuras");
+        i = 0;
+        for(List<Item> soldItems : historique.getHistoriqueVente())
+        {
+            seriesSulfuras.getData().add(new XYChart.Data("Day " + i, nbItemsSold(soldItems, "Sulfuras_Hand_of_Ragnaros")));
+            i++;
+        }
+
+        lineChartSell.getData().addAll(seriesAgedBrie, seriesBackstage, seriesConjured, seriesDexterity, seriesElixir, seriesSulfuras);
+
+    }
+
+    public int nbItemsSold(List<Item> listItemsSold, String typeItem){
+        int nb = 0;
+        for(Item item : listItemsSold)
+        {
+            String[] tmp = String.valueOf(item.getClass()).split("\\.");
+            if(tmp[tmp.length-1].compareTo(typeItem) == 0)
+            {
+                nb++;
+            }
+        }
+
+        return nb;
+    }
+
+    public int nbItemsBought(List<Item> listItemsBought, String typeItem){
+        int nb = 0;
+        for(Item item : listItemsBought)
+        {
+            String[] tmp = String.valueOf(item.getClass()).split("\\.");
+            if(tmp[tmp.length-1].compareTo(typeItem)==0)
+            {
+                nb++;
+            }
+        }
+
+        return nb;
     }
 
 

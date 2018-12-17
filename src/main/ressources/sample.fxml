@@ -4,6 +4,7 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
@@ -32,7 +33,7 @@
       <AnchorPane prefHeight="509.0" prefWidth="882.0" GridPane.rowIndex="1">
          <children>
             <ListView fx:id="list_items" layoutX="14.0" layoutY="49.0" prefHeight="363.0" prefWidth="219.0" />
-            <Label fx:id="label_list" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="219.0" text="Liste des items" />
+            <Label fx:id="label_list" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="219.0" text="List of items" />
             <Label fx:id="label_sellin" layoutX="250.0" layoutY="231.0" prefHeight="27.0" prefWidth="140.0" text="Sellin" />
             <Label fx:id="label_quality" layoutX="252.0" layoutY="281.0" prefHeight="27.0" prefWidth="140.0" text="Quality" />
             <Label fx:id="label_name" layoutX="250.0" layoutY="177.0" prefHeight="27.0" prefWidth="140.0" text="Name" />
@@ -61,7 +62,7 @@
             <Button fx:id="btnCancel" disable="true" layoutX="330.0" layoutY="453.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="26.0" prefWidth="74.0" text="Cancel" />
             <Button fx:id="btnDelete" layoutX="125.0" layoutY="452.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="26.0" prefWidth="107.0" text="Sell" />
             <Button fx:id="btnSave" disable="true" layoutX="248.0" layoutY="453.0" mnemonicParsing="false" onAction="#onSave" prefHeight="26.0" prefWidth="66.0" text="Confirm" />
-            <Button fx:id="pieChartButton" layoutX="325.0" layoutY="349.0" mnemonicParsing="false" onAction="#setPieChartButton" prefHeight="26.0" prefWidth="66.0" text="Pie chart" />
+            <Button fx:id="pieChartButton" layoutX="325.0" layoutY="349.0" mnemonicParsing="false" onAction="#setPieChartButton" prefHeight="26.0" prefWidth="74.0" text="Pie chart" />
             <Button fx:id="barChartButton1" layoutX="246.0" layoutY="349.0" mnemonicParsing="false" onAction="#setBarChartButton1" prefHeight="26.0" prefWidth="74.0" text="Bar chart 1" />
             <BarChart fx:id="bar1" layoutX="451.0" layoutY="-1.0" prefHeight="512.0" prefWidth="500.0" title="Item by date creation">
               <xAxis>
@@ -81,6 +82,24 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
+            <LineChart fx:id="lineChartSell" layoutX="451.0" layoutY="26.0" prefHeight="486.0" prefWidth="500.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Button fx:id="lineChartButtonBuy" layoutX="242.0" layoutY="19.0" mnemonicParsing="false" onAction="#setLineChartButtonBuy" prefHeight="26.0" prefWidth="82.0" text="Line chart buy" />
+            <LineChart fx:id="lineChartBuy" layoutX="451.0" layoutY="31.0" prefHeight="479.0" prefWidth="500.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Button fx:id="lineChartButtonSell" layoutX="341.0" layoutY="19.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Line chart sell" onAction="#setLineChartButtonSell" />
          </children>
       </AnchorPane>
 
