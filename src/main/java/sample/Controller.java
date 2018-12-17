@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -20,8 +19,6 @@ import javax.swing.*;
 
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.geometry.Side;
 
 public class Controller {
@@ -41,7 +38,7 @@ public class Controller {
     @FXML
     ListView<String> list_items;
     @FXML
-    ComboBox cmbType;
+    ComboBox<String> cmbType;
     @FXML
     PieChart pie;
     @FXML
@@ -58,7 +55,6 @@ public class Controller {
     Button btnDelete;
 
     public Inventory inventory = new Inventory();
-    public JsonClass jsonClass;
     public Historique historique = new Historique();
 
     public void initialize() {
@@ -76,7 +72,7 @@ public class Controller {
         list_items.getSelectionModel().selectedItemProperty().addListener(e->
                 displayItemsDetails(list_items.getSelectionModel().getSelectedItem()));
 
-        jsonClass.WriteItems(inventory.getItems());
+        //JsonClass.WriteItems(inventory.getItems());
 
         pieChart();
         lineChartBoughtItems();
@@ -129,8 +125,8 @@ public class Controller {
     public void updateQuality(){
         this.inventory.updateQuality();
         displayItemsDetails(inventory);
-
         historique.addDay();
+        initialize();
     }
 
     public void pieChart()
@@ -160,13 +156,13 @@ public class Controller {
             String[] test = String.valueOf(chooser.getSelectedFile()).split("\\\\");
             String path = test[test.length-1];
             System.out.println(path);
-            jsonClass.ReadJson(path, this.inventory.getItems(), this.inventory);
+            JsonClass.ReadJson(path, this.inventory.getItems(), this.inventory, historique);
         } else {
             System.out.println("No Selection ");
         }
         fetchItems();
         pieChart();
-
+        initialize();
     }
 
     public void deleteButton() {
@@ -268,7 +264,6 @@ public class Controller {
         {
             JOptionPane.showMessageDialog(null, "The entered ID already corresponds to another item...");
         }
-
     }
 
     public void onCancel(){
@@ -302,8 +297,9 @@ public class Controller {
     }
 
     public void lineChartBoughtItems(){
-        lineChart.setTitle("Sales History");
+        lineChart.getData().clear();
 
+        lineChart.setTitle("Sales History");
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Days");
@@ -314,7 +310,7 @@ public class Controller {
         int i = 0;
         for(List<Item> boughtItems : historique.getHistoriqueAchat())
         {
-            seriesAgedBrie.getData().add(new XYChart.Data("Day" + historique.getHistoriqueAchat().get(i), nbItemsBought(boughtItems, "Aged_Brie")));
+            seriesAgedBrie.getData().add(new XYChart.Data("Day "+ i, nbItemsBought(boughtItems, "Aged_Brie")));
             i++;
         }
 
@@ -323,7 +319,7 @@ public class Controller {
         i = 0;
         for(List<Item> boughtItems : historique.getHistoriqueAchat())
         {
-            seriesBackstage.getData().add(new XYChart.Data("Day" + historique.getHistoriqueAchat().get(i), nbItemsBought(boughtItems, "Backstage_passes_to_a_TAFKAL80ETC_concert")));
+            seriesBackstage.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Backstage_passes_to_a_TAFKAL80ETC_concert")));
             i++;
         }
 
@@ -332,7 +328,7 @@ public class Controller {
         i = 0;
         for(List<Item> boughtItems : historique.getHistoriqueAchat())
         {
-            seriesConjured.getData().add(new XYChart.Data("Day" + historique.getHistoriqueAchat().get(i), nbItemsBought(boughtItems, "Conjured_Mana_Cake")));
+            seriesConjured.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Conjured_Mana_Cake")));
             i++;
         }
 
@@ -341,7 +337,7 @@ public class Controller {
         i = 0;
         for(List<Item> boughtItems : historique.getHistoriqueAchat())
         {
-            seriesDexterity.getData().add(new XYChart.Data("Day" + historique.getHistoriqueAchat().get(i), nbItemsBought(boughtItems, "Dexterity_Vest")));
+            seriesDexterity.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Dexterity_Vest")));
             i++;
         }
 
@@ -350,7 +346,7 @@ public class Controller {
         i = 0;
         for(List<Item> boughtItems : historique.getHistoriqueAchat())
         {
-            seriesElixir.getData().add(new XYChart.Data("Day" + historique.getHistoriqueAchat().get(i), nbItemsBought(boughtItems, "Elixir_of_the_Mongoose")));
+            seriesElixir.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Elixir_of_the_Mongoose")));
             i++;
         }
 
@@ -359,7 +355,7 @@ public class Controller {
         i = 0;
         for(List<Item> boughtItems : historique.getHistoriqueAchat())
         {
-            seriesSulfuras.getData().add(new XYChart.Data("Day" + historique.getHistoriqueAchat().get(i), nbItemsBought(boughtItems, "Sulfuras_Hand_of_Ragnaros")));
+            seriesSulfuras.getData().add(new XYChart.Data("Day " + i, nbItemsBought(boughtItems, "Sulfuras_Hand_of_Ragnaros")));
             i++;
         }
 
@@ -372,7 +368,7 @@ public class Controller {
         for(Item item : listItemsSold)
         {
             String[] tmp = String.valueOf(item.getClass()).split("\\.");
-            if(typeItem == tmp[tmp.length-1])
+            if(tmp[tmp.length-1].compareTo(typeItem) == 0)
             {
                 nb++;
             }
@@ -386,14 +382,12 @@ public class Controller {
         for(Item item : listItemsBought)
         {
             String[] tmp = String.valueOf(item.getClass()).split("\\.");
-            if(typeItem == tmp[tmp.length-1])
+            if(tmp[tmp.length-1].compareTo(typeItem)==0)
             {
                 nb++;
             }
         }
-
+        System.out.println(nb);
         return nb;
     }
 }
-
-
